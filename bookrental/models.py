@@ -3,10 +3,7 @@ from django.db import models
 # Create your models/tables here.
 # ! Foreign keys go BELOW tables they reference !
 
-class Categories(models.Model):
-     category = models.CharField(max_length=15,primary_key=True)
-     def __unicode__(self):
-          return self.category
+
 
 
 class Login(models.Model):
