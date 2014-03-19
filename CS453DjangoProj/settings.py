@@ -52,6 +52,8 @@ ROOT_URLCONF = 'CS453DjangoProj.urls'
 
 WSGI_APPLICATION = 'CS453DjangoProj.wsgi.application'
 
+# Templates
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
