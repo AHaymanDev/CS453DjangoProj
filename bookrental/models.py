@@ -3,6 +3,12 @@ from django.db import models
 # Create your models/tables here.
 # ! Foreign keys go BELOW tables they reference !
 
+class Categories(models.Model):
+     category = models.CharField(max_length=15,primary_key=True)
+     def __unicode__(self):
+          return self.category
+
+
 class Login(models.Model):
      username = models.CharField(max_length=15, primary_key=True)
      password = models.CharField(max_length=15)
@@ -13,6 +19,16 @@ class Login(models.Model):
           return self.username, self.password
      def user_info(self):
           return self.name, self.email, self.phone
+class Book(models.Model):
+     isbn = models.CharField(max_length=17,primary_key=True)
+     title = models.CharField(max_length=20)
+     author = models.CharField(max_length=18)
+     def __unicode__(self):
+          return self.isbn, self.title, self.author
+class Categories(models.Model):
+     category = models.CharField(max_length=15,primary_key=True)
+     def __unicode__(self):
+          return self.category
 
 class Cart(models.Model):
      username = models.CharField(max_length=15, primary_key=True) # foreign key to login
