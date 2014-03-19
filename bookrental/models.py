@@ -19,4 +19,14 @@ class Returns(models.Model):
      def __unicode__(self):
      	 return self.username, self.isbn, self.returndate
      	 
-     	 #comment
+class Login(models.Model):
+     def __unicode__(self):
+          return self.username, self.password
+     def user_info(self):
+          return self.name, self.email, self.phone
+          
+     username = models.CharField(max_length=15, primary_key=True)
+     password = models.CharField(max_length=15)
+     name = models.CharField(max_length=15)
+     email = models.CharField(max_length=40)
+     phone = models.CharField(max_length=10)
