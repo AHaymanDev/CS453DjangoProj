@@ -18,3 +18,5 @@ class Returns(models.Model):
      #poll = models.ForeignKey(Poll)
      def __unicode__(self):
      	 return self.username, self.isbn, self.returndate
+     	 
+     	 #comment
