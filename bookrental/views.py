@@ -22,7 +22,7 @@ def returns(request):
      return render_to_response('bookrental/Returns.html')
 
 def warning(request):
-     return render_to_response('bookrental/Warningg.html')
+     return render_to_response('bookrental/Warning.html')
 
 def cart(request):
      return render_to_response('bookrental/YourCart.html')

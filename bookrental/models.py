@@ -15,6 +15,6 @@ class Returns(models.Model):
      username = models.CharField(max_length=15, primary_key=True) # foreign key to login
      isbn = models.CharField(max_length=17) # foreign key to book
      returndate = models.DateField(auto_now=False, auto_now_add=False)
-    #poll = models.ForeignKey(Poll)
-    def __unicode__(self):
+     #poll = models.ForeignKey(Poll)
+     def __unicode__(self):
      	 return self.username, self.isbn, self.returndate
