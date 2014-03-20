@@ -1,13 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Warning</title>
-    <link type="text/css" rel="stylesheet" href="warning_stylesheet.css"/>
+    <meta charset="utf-8">
+    <title>Disclaimer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GNU License Disclaimer">
+    <meta name="author" content="Jeremiah Griffin, Alisha Hayman, John Malott">
+
+    <!-- Le styles -->
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      .warning{
+      border: 2px solid black;
+      position: absolute;
+      left: 25%;
+      right: 25%;
+      width: 50%;
+      height: 85%;
+      }
+    </style>
   </head>
 
-  <body> 
-    <div>
-      <textarea class="warning" disabled="disabled">
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Computer Science Book Rental</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+              <!-- <li class="active"><a href="#">Register</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li> -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <center><h1><strong>Disclaimer</strong></h1></center>
+
+    <textarea class="warning" disabled="disabled">
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,8 +68,8 @@
     along with this program.  If not, see http://www.gnu.org/licenses/.
 
 
-   This software is only to be used as a course project in the Spring 2014 
-   offering of CS453 at Western Carolina University. It and any modification 
+   This software is only to be used as a course project in the Spring 2014
+   offering of CS453 at Western Carolina University. It and any modification
    of it are not to be used in any other manner.
 
                       GNU GENERAL PUBLIC LICENSE
@@ -702,7 +747,6 @@ the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 http://www.gnu.org/philosophy/why-not-lgpl.html.
       </textarea>
-    </div>
 
     <a class="accept" href="">
       <div>Accept</div>
@@ -710,6 +754,9 @@ http://www.gnu.org/philosophy/why-not-lgpl.html.
 
     <a class="decline" href="">
       <div>Decline</div>
-    </a> 
+    </a>
+
+    </div> <!-- /container -->
   </body>
 </html>
+{% endblock %}
