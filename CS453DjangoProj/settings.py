@@ -144,7 +144,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 # Templates
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'), 'templates/']
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
