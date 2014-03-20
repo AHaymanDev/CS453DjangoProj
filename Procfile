@@ -1,0 +1,1 @@
+web: gunicorn CS453DjangoProj.wsgi
