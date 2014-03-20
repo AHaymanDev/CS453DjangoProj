@@ -29,3 +29,12 @@ def cart(request):
 
 def category(request):
      return render_to_response('bookrental/category.html')
+     
+def login_failure(request):
+     return render_to_response('bookrental/login_failure.html')
+     
+def new_user(request):
+     return render_to_response('bookrental/new_user.html')
+     
+def update_user(request):
+     return render_to_response('bookrental/update_user.html')
