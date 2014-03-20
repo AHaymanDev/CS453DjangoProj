@@ -29,14 +29,13 @@ DATABASES = {'default': dj_database_url.config()}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['book-rental.herokuapp.com']
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'yf-x3k)oj6z*y8vjqi*lo7(61y_i+i*qk^czc7e#*2#fgr29_z'
 
@@ -81,16 +80,6 @@ STATIC_ROOT = 'static/'
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = 'static/'
-#STATIC_URL = 'https://s3.amazonaws.com/django-blog/'
-
-#Amazon Web Services
-#Access Key ID:
-#AKIAJM5YYMAG4IOVOKNQ
-#Secret Access Key:
-#nTQUv9mfEvPq4WqEk4lCBqbiO1+VJIqCHwpHgThA
-#AWS_ACCESS_KEY_ID = 'AKIAJM5YYMAG4IOVOKNQ'
-#AWS_SECRET_ACCESS_KEY = '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'
-#AWS_STORAGE_BUCKET_NAME = 'cs453djangoproj'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -104,10 +93,6 @@ STATICFILES_DIRS = (
 
 )
 
-#STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-# Application d
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -116,7 +101,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookrental',
-    #'storages',
 )
 
 MIDDLEWARE_CLASSES = (
