@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+  </head>
+
+  <body> 
+    <div id="name">
+      <center>
+      <h1><strong>Update Account Information</strong></h1>
+      </center>
+    </div>
+    <div>
+       <form align="center">
+       <table align="center">
+       <tr>
+        <td align="right">First Name:</td>
+        <td align="left"><input type="text" name="first" value="John"/></td>
+       </tr>
+       <tr>
+        <td align="right">Last Name:</td>
+        <td align="left"><input type="text" name="last" value="Smith"/></td>
+       </tr>
+       <tr>
+        <td align="right">Email:</td>
+        <td align="left"><input type="text" name="email" value="example@yahoo.com"/></td>
+       </tr>
+       <tr>
+        <td align="right">Username:</td>
+        <td align="left"><input type="text" name="username" value="JSmith"/></td>
+       </tr>
+       <tr>
+        <td align="right">Password:</td>
+        <td align="left"><input type="text" name="password" value="********"/></td>
+       </tr>
+      </table>
+      <input type="submit" name="Submit">
+     </form>
+    </div>
+  </body>
+</html>
+{% endblock %}
