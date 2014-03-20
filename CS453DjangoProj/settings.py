@@ -40,8 +40,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'yf-x3k)oj6z*y8vjqi*lo7(61y_i+i*qk^czc7e#*2#fgr29_z'
 
-ALLOWED_HOSTS = []
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -83,7 +81,16 @@ STATIC_ROOT = 'static/'
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
+#STATIC_URL = 'https://s3.amazonaws.com/django-blog/'
 
+#Amazon Web Services
+#Access Key ID:
+#AKIAJM5YYMAG4IOVOKNQ
+#Secret Access Key:
+#nTQUv9mfEvPq4WqEk4lCBqbiO1+VJIqCHwpHgThA
+#AWS_ACCESS_KEY_ID = 'AKIAJM5YYMAG4IOVOKNQ'
+#AWS_SECRET_ACCESS_KEY = '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'
+#AWS_STORAGE_BUCKET_NAME = 'cs453djangoproj'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -97,6 +104,8 @@ STATICFILES_DIRS = (
 
 )
 
+#STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -107,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookrental',
+    #'storages',
 )
 
 MIDDLEWARE_CLASSES = (
