@@ -106,7 +106,7 @@ STATICFILES_DIRS = (
 
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-# Application definition
+# Application d
 
 INSTALLED_APPS = (
     'django.contrib.admin',
