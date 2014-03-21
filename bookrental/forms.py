@@ -12,6 +12,6 @@ class UserCreateForm(UserCreationForm):
     email = forms.EmailField()
     phone = forms.CharField()
 
-    class Meta:
-        model = User
-        fields = ( "username") #, "password" )
+    #class Meta:
+    #    model = User
+    #    fields = ( "username") #, "password" )
