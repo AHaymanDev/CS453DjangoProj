@@ -13,7 +13,7 @@ from django_tables2 import RequestConfig
 def book(request):
     table = BookTable(Book.objects.all())
     RequestConfig(request).configure(table)
-    return render_to_response('bookrental/Books.html')
+    return render_to_response('bookrental/Books.html', {'table': table})
 
 
 def checkout(request):
