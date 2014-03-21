@@ -1,36 +1,49 @@
-<! DOCTYPE html>
-
-<html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Main Menu</title>
-    <link type="text/css" rel="stylesheet" href="category_stylesheet.css"/>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All categories">
+    <meta name="author" content="Jeremiah Griffin, Alisha Hayman, John Malott">
+
+    <!-- Le styles -->
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+
   </head>
 
   <body>
-    <div id="top"></div>
-    <div id="search">
-      <textarea name="searchbox" cols="14" rows="1">Search</textarea>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Computer Science Book Rental</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+              <li class="active">Logged in as: {{ user.username }}</li> <!-- {{ user.username }} -->
+              <!--<li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li> -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
 
-    <div id="cart">
-      <a href="">
-        <img src="http://blink.ucsd.edu/_images/faculty-tab/Shopping-Cart.png" width="30px" height="30px"/>
-      </a>
-    </div>
+    <div class="container">
 
-    <div id="back">
-      <a href="">
-        <img src="https://cdn1.iconfinder.com/data/icons/large-black-icons/512/Undo_arrow_left_edit_back.png" width="27px" height="27px"/>
-      </a>
-    </div>
-
-    <div id="logout">
-      <a href="">
-        <img src="https://cdn2.iconfinder.com/data/icons/flaticons-stroke/16/logout-2-256.png" width="25px" height="25px"/>
-      </a>
-    </div>
-
-    <div id="bottom"></div>
+      <center><h1><strong>Categories</strong></h1></center>
 
     <a href=""><div class="category" id="psp">Problem Solving and Programming<br><img src="http://www.cryptomathic.com/media/22872/hsm%20programming_543x223.jpg"width="90"height="90"></div></a>
     <a href=""><div class="category" id="sd">Software Development<br><img src="http://www.mosaicsd.com/images/Software_Development1200x440.jpg"width=110 height=100></div></a>
@@ -40,5 +53,8 @@
     <a href=""><div class="category" id="os">Operating Systems<br><img src="http://statfaking1.firstpost.in/wp-content/uploads/2014/02/operating-system-logos.jpg"width=100 height=100></div></a>
     <a href=""><div class="category" id="ds">Database System<br><img src="http://innocentsystem.net/wp-content/uploads/2014/02/Business-Database.jpg"width=100 height=100></div></a>
     <a href=""><div class="category" id="co">Computer Organization<br><img src="http://courses.cs.vt.edu/~cs1104/VirtualMachines/OS.Layers.gif"width=120 height=120></div></a>
+
+    </div> <!-- /container -->
   </body>
 </html>
+{% endblock %}
