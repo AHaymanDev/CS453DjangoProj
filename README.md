@@ -111,18 +111,18 @@ Returns.objects.get(returndate)
 <b>On the books' info page, display the books' isbn, title, author, and category:</b>
 
 <u>SQL:</u><br>
-SELECT isbn,title,author,category
-FROM   Book,Categories
-WHERE Categories.category=Book.category
-      ^Book.isbn=''
-      ^Book.title=''
-      ^Book.author=''
+SELECT isbn,title,author,category<br>
+FROM   Book,Categories<br>
+WHERE Categories.category=Book.category<br>
+      ^Book.isbn=''<br>
+      ^Book.title=''<br>
+      ^Book.author=''<br>
 
 <u>Django:</u><br>
-Book.objects.get(isbn__exact)
-Book.objects.get(title__exact)
-Book.objects.get(author__exact)
-Book.objects.get(categories__category__exact)
+Book.objects.get(isbn__exact)<br>
+Book.objects.get(title__exact)<br>
+Book.objects.get(author__exact)<br>
+Book.objects.get(categories__category__exact)<br>
 
 
 
@@ -130,22 +130,22 @@ Book.objects.get(categories__category__exact)
 <b>On the list of books page, display the books' author and title:</b>
 
 <u>SQL:</u><br>
-SELECT title,author
-FROM Book
-WHERE Book.title =' '
-      ^Book.author=' '
+SELECT title,author<br>
+FROM Book<br>
+WHERE Book.title =' '<br>
+      ^Book.author=' '<br>
 
 <u>Django:</u><br>
-Book.objects.get(title__exact)
+Book.objects.get(title__exact)<br>
 
-Book.objects.get(author__exact)
+Book.objects.get(author__exact)<br>
 
 <b>On the Categories Page, display all the categories:</b>
 
 <u>SQL:</u><br>
-SELECT category
-FROM Categories
+SELECT category<br>
+FROM Categories<br>
 
 <u>Django:</u><br>
-Category.objects.all()
+Category.objects.all()<br>
 
