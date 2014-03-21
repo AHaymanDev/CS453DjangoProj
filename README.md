@@ -34,7 +34,7 @@ WHERE name = "John"<br>
 <u>Django:</u><br>
 Logins.object.filter(name_iexact="John")
 
-<p>Returns page, gets the isbn that the user needs to return</p>
+<b>Returns page, gets the isbn that the user needs to return</b>
 
 <u>SQL:</u><br>
 SELECT isbn<br>
@@ -44,15 +44,14 @@ WHERE returns.isbn = book.isbn <br>
 <u>Django:</u><br>
 Returns.object.filter(Login__book_isbn=1234)
 
-<b>Returns page, displays table </b>
+<p>Returns page, displays table of user's username</p>
 
 <u>SQL:</u><br>
-SELECT isbn<br>
+SELECT username<br>
 FROM returns, login<br>
-WHERE returns.isbn = cart.isbn <br>
 
 <u>Django:</u><br>
-Returns.object.filter(Login__username)
+Returns.object.filter(Login_username)
 
 
 Display the current user's full name at the top of each page after logging in (ex. cart page).
