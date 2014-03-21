@@ -28,7 +28,7 @@ Book.object.filter(title)
 
 <u>SQL:</u><br>
 SELECT name<br>
-FROM returns, login<br>
+FROM  login<br>
 WHERE name = John <br>
 
 <u>Django:</u><br>
