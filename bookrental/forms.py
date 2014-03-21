@@ -6,6 +6,7 @@ from django import forms
 # Extending Django's UserCreateForm to include name, email, and phone
 # along with username, password, and password confirmation.
 
+
 class UserCreateForm(UserCreationForm):
     fullname = forms.CharField(required=True)
     email = forms.EmailField(required=True)

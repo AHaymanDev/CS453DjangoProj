@@ -30,10 +30,15 @@ def login(request):
         if user is not None:
             login(request, user)
             state = "You're successfully logged in!"
+            if user.is_active:
+                login(request, user)
+                state = "You're successfully logged in!"
+            else:
+                state = "Your account is not active, please contact the site admin."
         else:
             state = "Your username and/or password were incorrect."
 
-    return render_to_response('bookrental/Login.html', {'state': state, 'username': username})
+    return render_to_response('bookrental/Login.html',{'state':state, 'username': username})
 
 
 def return_confirm(request):
@@ -62,7 +67,7 @@ def login_failure(request):
 
 # Register a new user with a custom form, log them in, and redirect
 # to the Warning page.
-def new_user(request): #self, request):
+def new_user(request):
     user_form = UserCreateForm(request.POST)
     if user_form.is_valid():
         username = user_form.clean_username()
@@ -71,8 +76,8 @@ def new_user(request): #self, request):
         user = authenticate(username=username, password=password)
         login(request, user)
         return HttpResponseRedirect('bookrental/Warning.html')
-    return render(request, # self.template_name,
-                  {'user_form': user_form})     # 'bookrental/new_user.html')
+    return render(request, 'bookrental/new_user.html',
+        {'user_form': user_form})     #'bookrental/new_user.html')
 
 
 def update_user(request):
