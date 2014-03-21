@@ -19,20 +19,20 @@ def info(request):
     return render_to_response('bookrental/InfoPage.html')
 
 
-def loginfunc(request, user):
-    #username = password = ''
-    #if request.POST:
-    #    username = request.POST.get('username')
-    #    password = request.POST.get('password')
+def loginfunc(request):
+    username = password = ''
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-    #    user = authenticate(username=username, password=password)
-    if user is not None:
-        login(request, user)
-        state = "You've successfully logged in!"
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            state = "You've successfully logged in!"
     else:
         state = "Your username and/or password were incorrect."
 
-    return render_to_response('bookrental/Login.html', {'state': state, 'username': user})
+    return render_to_response('bookrental/Login.html', {'state': state, 'username': username})
 
 
 def return_confirm(request):
@@ -68,7 +68,7 @@ def new_user(request):
         password = user_form.clean_password2()
         user_form.save()
         user = authenticate(username=username, password=password)
-        loginfunc(request, user)
+        login(request, user)
         return HttpResponseRedirect('bookrental/Warning.html')
     return render(request, 'bookrental/new_user.html',
         {'user_form': user_form})     #'bookrental/new_user.html')
