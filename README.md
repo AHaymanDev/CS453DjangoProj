@@ -28,7 +28,7 @@ Book.object.filter(title)
 
 <u>SQL:</u><br>
 SELECT name<br>
-FROM  login<br>
+FROM returns, login<br>
 WHERE name = John <br>
 
 <u>Django:</u><br>
@@ -107,3 +107,45 @@ Returns.objects.get(login__username__phone)<br>
 Returns.objects.get(book__isbn__title)<br>
 Returns.objects.get(cart__username__quantity)<br>
 Returns.objects.get(returndate)
+
+<b>On the books' info page, display the books' isbn, title, author, and category:</b>
+
+<u>SQL:</u><br>
+SELECT isbn,title,author,category
+FROM   Book,Categories
+WHERE Categories.category=Book.category
+      ^Book.isbn=''
+      ^Book.title=''
+      ^Book.author=''
+
+<u>Django:</u><br>
+Book.objects.get(isbn__exact)
+Book.objects.get(title__exact)
+Book.objects.get(author__exact)
+Book.objects.get(categories__category__exact)
+
+
+
+
+<b>On the list of books page, display the books' author and title:</b>
+
+<u>SQL:</u><br>
+SELECT title,author
+FROM Book
+WHERE Book.title =' '
+      ^Book.author=' '
+
+<u>Django:</u><br>
+Book.objects.get(title__exact)
+
+Book.objects.get(author__exact)
+
+<b>On the Categories Page, display all the categories:</b>
+
+<u>SQL:</u><br>
+SELECT category
+FROM Categories
+
+<u>Django:</u><br>
+Category.objects.all()
+
