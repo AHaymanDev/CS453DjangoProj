@@ -5,7 +5,7 @@ Django application to service as a computer science book rental system.
 
 <b>SQL to Django Queries:</b>
 
-3. Display the current user's full name at the top of each page after logging in (ex. cart page).
+Display the current user's full name at the top of each page after logging in (ex. cart page).
 
 <u>SQL:</u><br>
 SELECT name<br>
@@ -14,7 +14,7 @@ FROM Cart
 <u>Django:</u><br>
 Cart.objects.get(name)
 
-4. <b>On the cart page, display a table of the isbns, prices, and quantities of books a user wishes to checkout.</b>
+<b>On the cart page, display a table of the isbns, prices, and quantities of books a user wishes to checkout.</b>
 
 <u>SQL:</u><br>
 SELECT isbn, title, quantity, price<br>
@@ -27,7 +27,7 @@ Cart.objects.get(book__isbn__title)<br>
 Cart.objects.get(quantity)<br>
 Cart.objects.get(price)
 
-5. <b>On the checkout page, display the user's name, email, phone number, and returndate as a table.</b>
+<b>On the checkout page, display the user's name, email, phone number, and returndate as a table.</b>
 
 <u>SQL:</u><br>
 SELECT username, name, email, phone, returndate<br>
@@ -41,7 +41,7 @@ Returns.objects.get(login__username__phone)<br>
 Returns.objects.get(returndate)
 
 
-6. <b>On the return page, display the user's name and email in addition to book titles, quantities, and the return date.</b>
+<b>On the return page, display the user's name and email in addition to book titles, quantities, and the return date.</b>
 
 <u>SQL:</u><br>
 SELECT name, email, title, quantity, returndate<br>
