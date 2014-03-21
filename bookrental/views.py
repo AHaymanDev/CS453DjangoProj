@@ -3,11 +3,16 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from bookrental.forms import UserCreateForm
+from bookrental.models import Book
+from bookrental.tables import BookTable
+from django_tables2 import RequestConfig
 
 # Create your views here.
 
 
 def book(request):
+    table = BookTable(Book.objects.all())
+    RequestConfig(request).configure(table)
     return render_to_response('bookrental/Books.html')
 
 

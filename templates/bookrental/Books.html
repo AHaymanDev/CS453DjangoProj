@@ -1,129 +1,55 @@
-<! DOCTYPE html>
-
-<html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>List of Books</title>
-    <link type="text/css" rel="stylesheet" href="books_stylesheet.css"/>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="List of books from a given category">
+    <meta name="author" content="Jeremiah Griffin, Alisha Hayman, John Malott">
+
+    <!-- Le styles -->
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+
   </head>
 
   <body>
-    <div id="top"></div>
-    <div id="search">
-      <textarea name="searchbox" cols="14" rows="1">Search</textarea>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Computer Science Book Rental</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+              <li class="active"><a href="#about">Cart</a></li>
+              <li>Logged in as: {{ user.username }}</li>
+              <!--<li><a href="#contact">Contact</a></li> -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
 
-    <div id="cart">
-      <a href="">
-        <img src="http://blink.ucsd.edu/_images/faculty-tab/Shopping-Cart.png" width="30px" height="30px"/>
-      </a>
-    </div>
+    <div class="container">
 
-    <div id="back">
-      <a href="">
-        <img src="https://cdn1.iconfinder.com/data/icons/large-black-icons/512/Undo_arrow_left_edit_back.png" width="27px" height="27px"/>
-      </a>
-    </div>
+      <center><h1><strong>Category Books</strong></h1></center>
 
-    <div id="logout">
-      <a href="">
-        <img src="https://cdn2.iconfinder.com/data/icons/flaticons-stroke/16/logout-2-256.png" width="25px" height="25px"/>
-      </a>
-    </div>
+      {%  render_table table %}
 
-    <div id="booklist">
-    <a href="www.dictionary.com"><img src="http://www.jahn-bibliothek.ifeas.uni-mainz.de/Bilder_allgemein/Buchruecken_Zusammen.jpg" width="500px"height="150px"></a>
-  <h1>LIST OF BOOKS</h1>  
-  
- 
-  
-  <style> 
-@font-face
-{
-font-family: castellar;
-src: url(sansation_light.woff);
-}
 
-div
-{
-font-family:castellar;
-}
-</style>
- <table width = "430" height="25">                                          
-        
-          
-  <tr>
-  <td style="background-color:#FFD700;width:100px;">
-  <a href=""><img src= width="75px" height="85px"></a>
-
-  </td>
-  
-  <td style="background-color:#800080  ;height:85px;width:400px;">
-  <b>Title</b><br>
-  <b>Author</b><br>
-    Pages:  <br>
-  </td>
-  </tr>
-
-                                     
-</table>                  
- <table width = "430" height="25">                                          
-        
-          
-  <tr>
-  <td style="background-color:#FFD700;width:100px;">
-  <a href=""><img src= width="75px" height="85px"></a>
-
-  </td>
-  
-  <td style="background-color:#800080  ;height:85px;width:400px;">
-  <b>Title</b><br>
-  <b>Author</b><br>
-    Pages:  <br>
-  </td>
-  </tr>
-
-                                     
-</table>
- <table width = "430" height="25">                                          
-        
-          
-  <tr>
-  <td style="background-color:#FFD700;width:100px;">
-  <a href=""><img src= width="75px" height="85px"></a>
-
-  </td>
-  
-  <td style="background-color:#800080;height:85px;width:400px;">
-  <b>Title</b><br>
-  <b>Author</b><br>
-    Pages:  <br>
-  </td>
-  </tr>
-
-                                     
-</table>
- <table width = "430" height="25">                                          
-        
-          
-  <tr>
-  <td style="background-color:#FFD700;width:100px;">
-  <a href=""><img src= width="75px" height="85px"></a>
-
-  </td>
-  
-  <td style="background-color:#800080  ;height:85px;width:400px;">
-  <b>Title</b><br>
-  <b>Author</b><br>
-    Pages:  <br>
-  </td>
-  </tr>
-
-                                     
-</table>
-    <h3>bookrental.com</h3>
-    </div>
-
-    <div id="bottom">
-    </div>
+    </div> <!-- /container -->
   </body>
 </html>
+{% endblock %}

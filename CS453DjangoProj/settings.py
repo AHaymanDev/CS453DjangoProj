@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookrental',
+    'django_tables2',
 )
 
 MIDDLEWARE_CLASSES = (

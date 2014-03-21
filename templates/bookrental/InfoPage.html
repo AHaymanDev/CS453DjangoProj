@@ -1,56 +1,62 @@
-
-
-<! DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
   <head>
-   
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Information of a single book">
+    <meta name="author" content="Jeremiah Griffin, Alisha Hayman, John Malott">
 
-   <title>InfoPage</title>
-  <link type="text/css" rel="stylesheet" href="infoPage_stylesheet.css"/>
+    <!-- Le styles -->
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+
   </head>
-	<body>
-    <div id="header" style="background-color:#800080">
-    <img src="http://www.lifestyleuncut.com/wp-content/uploads/2012/09/open_book_bigger.jpg" width="100px" height="75px";<h1>Book Rental</h1></div>
-    </a>
-		<div id="top"></div>
-		<div id="search">
-			<textarea name="searchbox" cols="14" rows="1">Search</textarea>
-		</div>
-		<div id="cart">
-		  <a href=""><img src="http://blink.ucsd.edu/_images/faculty-tab/Shopping-Cart.png" width="30px" height="30px"/>
-		  </a>
-		</div>
-		<div id="back">
-		  <a href=""><img src="https://cdn1.iconfinder.com/data/icons/large-black-icons/512/Undo_arrow_left_edit_back.png" width="27px" height="27px"/>
-		  </a>
-		</div>
-    <div id="bookcover"><img src="" width="220" height="250"></div>
-		<div id="logout">
-		  <a href=""><img src="https://cdn2.iconfinder.com/data/icons/flaticons-stroke/16/logout-2-256.png" width="25px" height="25px"/>
-		  </a>
-		</div>
-	  <div id="title" style="background-color:#FFD700">
-    <h1>Book Title</h1>
-  	<h3> by Author</h3>
 
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Computer Science Book Rental</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+              <li class="active"><a href="#about">Cart</a></li>
+              <li>Logged in as: {{ user.username }}</li>
+              <!--<li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li> -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
-		
-	  <div id="info" style="background-color:#FFFFFF;float:left;">
-    
-    
-		
 
+    <div class="container">
+
+      <center><h1><strong>Book Information</strong></h1></center>
+
+      <h3>Book Title</h3>
+  	  <h3> by Author</h3>
 		<form action=" ">
 			Quantity: <input type="number" value="0" min="0" max="5"><br>
 			<input type="submit" value="Add to Cart"><br>
 		</form>
-		
-		
 		<h2>Book Details</h2>
 		<p>Category:  </p>
-
 		<p>ISBN:  </p>
-	
-		</div>
-	</body>
+
+    </div> <!-- /container -->
+  </body>
 </html>
+{% endblock %}
