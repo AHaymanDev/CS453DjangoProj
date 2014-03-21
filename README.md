@@ -28,8 +28,8 @@ Book.object.filter(title)
 
 <u>SQL:</u><br>
 SELECT name<br>
-FROM returns, login<br>
-WHERE name = John <br>
+FROM returns<br>
+WHERE name = "John"<br>
 
 <u>Django:</u><br>
 Logins.object.filter(name_iexact="John")
@@ -38,17 +38,17 @@ Logins.object.filter(name_iexact="John")
 
 <u>SQL:</u><br>
 SELECT isbn<br>
-FROM returns,login<br>
-WHERE returns.isbn = cart.isbn <br>
+FROM returns, login<br>
+WHERE returns.isbn = book.isbn <br>
 
 <u>Django:</u><br>
-Returns.object.filter(Login__cart_isbn=1234)
+Returns.object.filter(Login__book_isbn=1234)
 
-<p>Returns page, displays table </p>
+<b>Returns page, displays table </b>
 
 <u>SQL:</u><br>
 SELECT isbn<br>
-FROM returns,login<br>
+FROM returns, login<br>
 WHERE returns.isbn = cart.isbn <br>
 
 <u>Django:</u><br>
