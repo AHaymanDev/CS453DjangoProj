@@ -62,7 +62,7 @@ def login_failure(request):
 
 # Register a new user with a custom form, log them in, and redirect
 # to the Warning page.
-def new_user(self, request):
+def new_user(request): #self, request):
     user_form = UserCreateForm(request.POST)
     if user_form.is_valid():
         username = user_form.clean_username()
@@ -71,7 +71,7 @@ def new_user(self, request):
         user = authenticate(username=username, password=password)
         login(request, user)
         return HttpResponseRedirect('bookrental/Warning.html')
-    return render(request, self.template_name,
+    return render(request, # self.template_name,
                   {'user_form': user_form})     # 'bookrental/new_user.html')
 
 
