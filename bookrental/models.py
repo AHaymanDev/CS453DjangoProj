@@ -44,7 +44,7 @@ class Cart(models.Model):
 class Returns(models.Model):
      username = models.ForeignKey(Login) #models.CharField(max_length=15, primary_key=True) # foreign key to login
      isbn = models.ForeignKey(Book) #models.CharField(max_length=17) # foreign key to book
-     #title = models.ForeignKey(Login)
+     #book = models.ManyToManyField(Book)
      returndate = models.DateField(auto_now=False, auto_now_add=False)
      def __unicode__(self):
      	 return self.username, self.isbn, self.returndate
