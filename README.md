@@ -3,6 +3,17 @@ BookRental
 
 Django application to service as a computer science book rental system.
 
+<u>SQL:</u><br>
+SELECT title<br>
+FROM Returns, login<br>
+
+<u>Django:</u><br>
+Returns.object.filter(book_title)
+
+<p>Return page, displays a table of titles of books that needs to be returned</p>
+
+
+
 <b>SQL to Django Queries:</b>
 
 Display the current user's full name at the top of each page after logging in (ex. cart page).
