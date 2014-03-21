@@ -8,10 +8,10 @@ from django import forms
 
 
 class UserCreateForm(UserCreationForm):
-    fullname = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    phone = forms.CharField(required=True)
+    fullname = forms.CharField()
+    email = forms.EmailField()
+    phone = forms.CharField()
 
     class Meta:
         model = User
-        fields = ( "username", "password" )
+        fields = ( "username") #, "password" )
