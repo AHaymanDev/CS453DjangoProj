@@ -3,18 +3,57 @@ BookRental
 
 Django application to service as a computer science book rental system.
 
-<u>SQL:</u><br>
-SELECT title<br>
-FROM Returns, login<br>
-
-<u>Django:</u><br>
-Returns.object.filter(book_title)
-
-<p>Return page, displays a table of titles of books that needs to be returned</p>
-
-
 
 <b>SQL to Django Queries:</b>
+
+<p>info page, displays the user's usersname and password</p>
+
+<u>SQL:</u><br>
+SELECT username, password<br>
+FROM login<br>
+
+<u>Django:</u><br>
+Login.object.filter(username, password)
+
+<p>Books page, displays a table of book titles</p>
+
+<u>SQL:</u><br>
+SELECT title<br>
+FROM Book<br>
+
+<u>Django:</u><br>
+Book.object.filter(title)
+
+<p>Login page, displays the name of the user</p>
+
+<u>SQL:</u><br>
+SELECT name<br>
+FROM returns, login<br>
+WHERE name = John <br>
+
+<u>Django:</u><br>
+Logins.object.filter(name_iexact="John")
+
+<p>Returns page, gets the isbn that the user needs to return</p>
+
+<u>SQL:</u><br>
+SELECT isbn<br>
+FROM returns,login<br>
+WHERE returns.isbn = cart.isbn <br>
+
+<u>Django:</u><br>
+Returns.object.filter(Login__cart_isbn=1234)
+
+<p>Returns page, displays table </p>
+
+<u>SQL:</u><br>
+SELECT isbn<br>
+FROM returns,login<br>
+WHERE returns.isbn = cart.isbn <br>
+
+<u>Django:</u><br>
+Returns.object.filter(Login__username)
+
 
 Display the current user's full name at the top of each page after logging in (ex. cart page).
 
