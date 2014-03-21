@@ -19,7 +19,7 @@ def info(request):
     return render_to_response('bookrental/InfoPage.html')
 
 
-def login(request, user):
+def loginfunc(request, user):
     #username = password = ''
     #if request.POST:
     #    username = request.POST.get('username')
@@ -68,7 +68,7 @@ def new_user(request):
         password = user_form.clean_password2()
         user_form.save()
         user = authenticate(username=username, password=password)
-        login(request, user)
+        loginfunc(request, user)
         return HttpResponseRedirect('bookrental/Warning.html')
     return render(request, 'bookrental/new_user.html',
         {'user_form': user_form})     #'bookrental/new_user.html')
