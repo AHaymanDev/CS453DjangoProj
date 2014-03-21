@@ -27,7 +27,7 @@ def loginfunc(request):
 
         user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
+            login(request, username) # user
             state = "You've successfully logged in!"
             return render_to_response('bookrental/category.html')
     else:
