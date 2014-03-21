@@ -45,12 +45,6 @@
 
       <center><h1><strong>Create Account</strong></h1></center>
 
-      {% if user_form.errors %}
-        <p style="color: red;">
-            Please correct the error{{ user_form.errors|pluralize }} below.
-        </p>
-      {% endif %}
-
       <form action="" method="post">
         <table>
             {{ user_form.as_table }}

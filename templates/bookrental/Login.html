@@ -45,6 +45,12 @@
 
       <center><h1><strong>Sign in</strong></h1></center>
 
+        {% ifequal state "Your username and/or password were incorrect." %}
+        <p style="color: red;">
+            {{ state }}
+        </p>
+        {% endifequal %}
+
       <form align="middle">
       Username: <input type="text" name="Username" value=""><br>
       Password: <input type="text" name="Password" value=""><br>
