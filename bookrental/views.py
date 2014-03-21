@@ -26,10 +26,10 @@ def loginfunc(request):
         password = request.POST.get('password')
 
         user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            state = "You've successfully logged in!"
-            return render_to_response('bookrental/category.html')
+        # if user is not None:
+        login(request, user)
+        # state = "You've successfully logged in!"
+        return HttpResponse('bookrental/category.html')
     else:
         state = "Your username and/or password were incorrect."
 
@@ -70,7 +70,7 @@ def new_user(request):
         user_form.save()
         user = authenticate(username=username, password=password)
         login(request, user)
-        return render_to_response('bookrental/Warning.html')# HttpResponseRedirect('Warning.html')
+        return HttpResponse('bookrental/Warning.html') # render_to_response('bookrental/Warning.html')
     return render(request, 'bookrental/new_user.html',
         {'user_form': user_form})     #'bookrental/new_user.html')
 
