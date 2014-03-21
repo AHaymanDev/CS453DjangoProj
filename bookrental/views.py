@@ -29,6 +29,7 @@ def loginfunc(request):
         if user is not None:
             login(request, user)
             state = "You've successfully logged in!"
+            return render_to_response('bookrental/category.html')
     else:
         state = "Your username and/or password were incorrect."
 
