@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from bookrental import views
-
+# changes
 urlpatterns = patterns('',
      url(r'^$', 'bookrental.views.login', name=u"login"), # first webpage
      url(r'^book/$', 'bookrental.views.book', name=u"book"),
