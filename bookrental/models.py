@@ -12,6 +12,7 @@ class Login(models.Model):
      name = models.CharField(max_length=15)
      email = models.CharField(max_length=40)
      phone = models.CharField(max_length=10)
+     #cart = models.ManyToManyField(Cart)
      def __unicode__(self):
           return self.username, self.password
      def user_info(self):
