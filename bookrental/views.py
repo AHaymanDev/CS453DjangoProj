@@ -26,20 +26,20 @@ def info(request):
 # TODO: doesn't work, currently
 def loginfunc(request):
     username = password = ''
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
 
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             state = "You've successfully logged in!"
             return HttpResponse('bookrental/category.html')
+        else:
+            state = "Your username and/or password were incorrect."
     else:
-        state = "Your username and/or password were incorrect."
-
+        state = "Not logged in."
     return render_to_response('bookrental/Login.html', {'state': state, 'username': username})
-
 
 def return_confirm(request):
     return render_to_response('bookrental/ReturnConfirm.html')
