@@ -47,6 +47,7 @@
         <h4><font color="red">Username or password is invalid!</font></h4></center>
 
       <form align="middle">
+      {% csrf_token %}
       Username: <input type="text" name="Username" value=""><br>
       Password: <input type="text" name="Password" value=""><br>
       <input type="submit" value="Login">
