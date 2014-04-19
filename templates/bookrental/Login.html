@@ -47,9 +47,9 @@
 
       <form method="post" action="{% url 'bookrental.views.login_page' %}" align="middle">
       {% csrf_token %}
-      Username: {{ form.username }}<!-- <input type="text" name="username" value=""><br> -->
-      Password: {{ form.password }}<!--<input type="text" name="password" value=""><br>-->:
-      <input type="submit" value="login">
+      Username: <input type="text" name="username" value=""><br>
+      Password: <input type="text" name="password" value=""><br>
+      <input type="submit" value="Login">
       </form>
 
     </div> <!-- /container -->
