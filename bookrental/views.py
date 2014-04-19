@@ -23,20 +23,20 @@ def checkout(request):
 def info(request):
     return render_to_response('bookrental/InfoPage.html')
 
+# TODO: just added to redirect the login url
+def login_page(request):
+    return render_to_response('bookrental/Login.html')
+
 # TODO: doesn't work, currently
 def loginfunc(request):
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return HttpResponse('bookrental/category.html')
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return HttpResponseRedirect('bookrental/category.html')
     else:
-        return HttpResponse('bookrental/login_failure.html')
-
-    return render_to_response('bookrental/Login.html')
+        return HttpResponseRedirect('bookrental/login_failure.html')
 
 
 def return_confirm(request):

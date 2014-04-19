@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from bookrental import views
 
 urlpatterns = patterns('',
-     url(r'^$', 'bookrental.views.loginfunc', name=u"loginfunc"), # first webpage
+     url(r'^$', 'bookrental.views.login_page', name=u"login_page"), # first webpage
      url(r'^book/$', 'bookrental.views.book', name=u"book"),
      url(r'^checkout/$', 'bookrental.views.checkout', name=u"checkout"),
      url(r'^info/$', 'bookrental.views.info', name=u"info"),
