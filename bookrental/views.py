@@ -6,6 +6,7 @@ from bookrental.forms import UserCreateForm
 from bookrental.models import Book
 from bookrental.tables import BookTable
 from django_tables2 import RequestConfig
+from django.core.context_processors import csrf
 
 # Create your views here.
 
@@ -25,6 +26,8 @@ def info(request):
 
 
 def login_page(request):
+    c = {}
+    c.update(csrf(request))
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -34,7 +37,7 @@ def login_page(request):
             return HttpResponseRedirect('bookrental/Warning.html')
         else:
             return HttpResponseRedirect('bookrental/login_failure.html')
-    return render_to_response('bookrental/Login.html')
+    return render_to_response('bookrental/Login.html', c)
 
 
 def return_confirm(request):
