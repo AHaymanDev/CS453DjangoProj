@@ -44,12 +44,12 @@
     <div class="container">
 
       <center><h1><strong>Sign in</strong></h1>
-        <h4><font color="red">Username or password is invalid!</font></h4></center>
+        <h5><font color="red">Username or password is invalid!</font></h5></center>
 
       <form align="middle">
       {% csrf_token %}
       Username: <input type="text" name="Username" value=""><br>
-      Password: <input type="text" name="Password" value=""><br>
+      Password: <input type="password" name="password" value=""><br>
       <input type="submit" value="Login">
       </form>
 

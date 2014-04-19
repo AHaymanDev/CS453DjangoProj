@@ -75,7 +75,7 @@ def new_user(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         # TODO: fix this, not redirecting right
-        return HttpResponseRedirect('bookrental/Warning.html') # render_to_response('bookrental/Warning.html')
+        return HttpResponseRedirect('warning/') # render_to_response('bookrental/Warning.html')
     return render(request, 'bookrental/new_user.html',
         {'user_form': user_form})     #'bookrental/new_user.html')
 
