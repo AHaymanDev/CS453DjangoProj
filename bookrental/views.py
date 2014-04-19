@@ -78,17 +78,19 @@ def login_failure(request):
 # Register a new user with a custom form, log them in, and redirect
 # to the Warning page.
 def new_user(request):
-    user_form = UserCreateForm(request.POST)
-    if user_form.is_valid():
-        username = user_form.clean_username()
-        password = user_form.clean_password2()
-        user_form.save()
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        # TODO: fix this, not redirecting right
-        return HttpResponseRedirect('warning/') # render_to_response('bookrental/Warning.html')
-    return render(request, 'bookrental/new_user.html',
-        {'user_form': user_form})     #'bookrental/new_user.html')
+    if request.method == 'POST':
+        user_form = UserCreateForm(request.POST)
+        if user_form.is_valid():
+            username = user_form.clean_username()
+            password = user_form.clean_password2()
+            user_form.save()
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return HttpResponseRedirect('warning/')
+    c = {}
+    c.update(csrf(request))
+    c['form'] = UserCreateForm()
+    return render(request, 'bookrental/new_user.html', c)
 
 
 def update_user(request):
