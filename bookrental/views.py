@@ -31,7 +31,7 @@ def login_page(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('bookrental/category.html')
+            return HttpResponseRedirect('bookrental/Warning.html')
         else:
             return HttpResponseRedirect('bookrental/login_failure.html')
     return render_to_response('bookrental/Login.html')
