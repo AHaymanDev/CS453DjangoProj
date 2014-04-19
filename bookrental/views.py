@@ -61,7 +61,18 @@ def category(request):
 
 
 def login_failure(request):
-    return render_to_response('bookrental/login_failure.html')
+    c = {}
+    c.update(csrf(request))
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect('warning/')
+        else:
+            return HttpResponseRedirect('login_failure/')
+    return render_to_response('bookrental/login_failure.html', c)
 
 
 # Register a new user with a custom form, log them in, and redirect
