@@ -46,9 +46,9 @@
       <center><h1><strong>Create Account</strong></h1></center>
 
       <form action="" method="post">
-        <table>
-            {{ user_form.as_table }}
-        </table>
+        <!--<table>-->
+            {{ user_form}}<!--.as_table }}-->
+        <!--</table>-->
         {% csrf_token %}
         <input type="submit" value="Register">
       </form>

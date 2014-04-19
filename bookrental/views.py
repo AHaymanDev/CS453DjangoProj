@@ -87,10 +87,7 @@ def new_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             return HttpResponseRedirect('warning/')
-    c = {}
-    c.update(csrf(request))
-    c['form'] = UserCreateForm()
-    return render(request, 'bookrental/new_user.html', c)
+    return render(request, 'bookrental/new_user.html', {'user_form': user_form})
 
 
 def update_user(request):
