@@ -25,7 +25,6 @@ def info(request):
 
 # TODO: doesn't work, currently
 def loginfunc(request):
-    username = password = ''
     if request.POST:
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -33,12 +32,11 @@ def loginfunc(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            state = "You've successfully logged in!"
             return HttpResponse('bookrental/category.html')
     else:
-        state = "Your username and/or password were incorrect."
+        return HttpResponse('bookrental/login_failure.html')
 
-    return render_to_response('bookrental/Login.html', {'state': state, 'username': username})
+    return render_to_response('bookrental/Login.html')
 
 
 def return_confirm(request):

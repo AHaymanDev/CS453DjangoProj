@@ -45,10 +45,11 @@
 
       <center><h1><strong>Sign in</strong></h1></center>
 
-      <form align="middle">
-      Username: <input type="text" name="Username" value=""><br>
-      Password: <input type="text" name="Password" value=""><br>
-      <input type="submit" value="Submit">
+      <form method="post" action="{% url 'django.contrib.auth.views.login' %}" align="middle">
+      {% csrf_token %}
+      Username: {{ form.username }}<!-- <input type="text" name="username" value=""><br> -->
+      Password: {{ form.password }}<!--<input type="text" name="password" value=""><br>-->:
+      <input type="submit" value="login">
       </form>
 
     </div> <!-- /container -->
