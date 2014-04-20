@@ -87,6 +87,7 @@ def new_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             return HttpResponseRedirect('warning/')
+    user_form = UserCreateForm()
     return render(request, 'bookrental/new_user.html', {'user_form': user_form})
 
 
