@@ -9,7 +9,7 @@ from django_tables2 import RequestConfig
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 
-# Create your views here.
+# Create your views here. ononoin
 
 
 def book(request):
