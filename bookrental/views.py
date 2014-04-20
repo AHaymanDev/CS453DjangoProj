@@ -76,7 +76,7 @@ def login_failure(request):
 
 def logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('login_page'))
+    return HttpResponseRedirect('login_page')#reverse('login_page'))
 
 
 # Register a new user with a custom form, log them in, and redirect to the Warning page.
