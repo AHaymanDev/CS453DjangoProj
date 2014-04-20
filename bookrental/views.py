@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from bookrental.forms import UserCreateForm
@@ -74,9 +74,9 @@ def login_failure(request):
     return render_to_response('bookrental/login_failure.html', c)
 
 
-def logout(request):
+def logout_page(request):
     logout(request)
-    return HttpResponseRedirect('login_page')#reverse('login_page'))
+    return HttpResponseRedirect(reverse('login_page'))
 
 
 # Register a new user with a custom form, log them in, and redirect to the Warning page.
