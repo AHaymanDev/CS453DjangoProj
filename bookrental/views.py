@@ -70,7 +70,7 @@ def login_failure(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('warning/'))
+            return HttpResponseRedirect(reverse('warning'))
     return render_to_response('bookrental/login_failure.html', c)
 
 
