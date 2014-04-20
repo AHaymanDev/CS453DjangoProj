@@ -32,10 +32,9 @@
           <a class="brand" href="#">Computer Science Book Rental</a>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
-              <li class="active"><a href="{% url 'cart' %}">Cart</a></li>
-              <li><a href="{% url 'update_user' %}">Settings</a></li>
+              <li class="active"><a href="{% url 'update_user' %}">Logged in as: {{ user.username }}</a></li>
+              <li><a href="{% url 'cart' %}">Cart</a></li>
               <li><a href="{% url 'logout' %}">Logout</a></li>
-              <li><a href="">Logged in as: {{ user.username }}</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
