@@ -8,6 +8,7 @@ from bookrental.tables import BookTable
 from django_tables2 import RequestConfig
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
+from django.template import RequestContext
 
 # Create your views here.
 
@@ -58,7 +59,8 @@ def cart(request):
 
 
 def category(request):
-    return render_to_response('bookrental/category.html')
+    data={}
+    return render_to_response('bookrental/category.html', data, context_instance=RequestContext(request))
 
 
 def login_failure(request):
@@ -95,4 +97,5 @@ def new_user(request):
 
 
 def update_user(request):
-    return render_to_response('bookrental/update_user.html')
+    username = request.user.get_username()
+    return render(request, 'bookrental/update_user.html', {'username': username})
