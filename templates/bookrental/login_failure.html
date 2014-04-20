@@ -46,7 +46,7 @@
       <center><h1><strong>Sign in</strong></h1>
         <h5><font color="red">Username or password is invalid!</font></h5></center>
 
-      <form align="middle">
+      <form method="post" action="{% url 'bookrental.views.login_page' %}" align="middle">
       {% csrf_token %}
       Username: <input type="text" name="username" value=""><br>
       Password: <input type="password" name="password" value=""><br>
