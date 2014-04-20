@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Books</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="List of books from a given category">
     <meta name="author" content="Jeremiah Griffin, Alisha Hayman, John Malott">
@@ -33,9 +33,9 @@
           <a class="brand" href="#">Computer Science Book Rental</a>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
-              <li class="active"><a href="#about">Cart</a></li>
-              <li>Logged in as: {{ user.username }}</li>
-              <!--<li><a href="#contact">Contact</a></li> -->
+              <li class="active"><a href="{% url 'update_user' %}">Logged in as: {{ user.username|title }}</a></li>
+              <li><a href="{% url 'cart' %}">Cart</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -44,7 +44,7 @@
 
     <div class="container">
 
-      <center><h1><strong>Category Books</strong></h1></center>
+      <center><h1><strong> {{ select_books|title }} Books</strong></h1></center>
 
       {%  render_table table %}
 

@@ -14,9 +14,6 @@
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-        margin-left:auto;
-        margin-right:auto;
-        width:70%;
       }
     </style>
 
@@ -35,7 +32,7 @@
           <a class="brand" href="#">Computer Science Book Rental</a>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
-              <li class="active"><a href="{% url 'update_user' %}">Logged in as: {{ user.username }}</a></li>
+              <li class="active"><a href="{% url 'update_user' %}">Logged in as: {{ user.username|title }}</a></li>
               <li><a href="{% url 'cart' %}">Cart</a></li>
               <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
@@ -48,15 +45,17 @@
 
       <center><h1><strong>Categories</strong></h1></center>
 
-    <a href=""><div class="category" id="psp">Problem Solving and Programming<br><img src="http://www.cryptomathic.com/media/22872/hsm%20programming_543x223.jpg"width="90"height="90"></div></a>
-    <a href=""><div class="category" id="sd">Software Development<br><img src="http://www.mosaicsd.com/images/Software_Development1200x440.jpg"width=110 height=100></div></a>
-    <a href=""><div class="category" id="opl">Organization of Programming Languages<br><img src="http://www.cs.tufts.edu/comp/105/progLanguages.jpg"width=130 height=90></div></a>
-    <a href=""><div class="category" id="se">Software Engineering<br><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/19/SDLC_-_Software_Development_Life_Cycle.jpg/596px-SDLC_-_Software_Development_Life_Cycle.jpg"width=100 height=100></div></a>
-    <a href=""><div class="category" id="cn">Computer Networking<br><img src="http://educationcareerarticles.com/wp-content/uploads/2014/01/Computer-Networking.jpg"width=110 height=100></div></a>
-    <a href=""><div class="category" id="os">Operating Systems<br><img src="http://statfaking1.firstpost.in/wp-content/uploads/2014/02/operating-system-logos.jpg"width=100 height=100></div></a>
-    <a href=""><div class="category" id="ds">Database System<br><img src="http://innocentsystem.net/wp-content/uploads/2014/02/Business-Database.jpg"width=100 height=100></div></a>
-    <a href=""><div class="category" id="co">Computer Organization<br><img src="http://courses.cs.vt.edu/~cs1104/VirtualMachines/OS.Layers.gif"width=120 height=120></div></a>
-
+        <!--TODO: make this a carousel using bootstrap -->
+    <form name="categorybuttons" method="post" action="{% url 'bookrental.views.book' %}">
+    {% csrf_token %}
+    <input name="software_development" type="image" src="http://www.mosaicsd.com/images/Software_Development1200x440.jpg" width=110 height=100><br>
+    <input name="programming_languages" type="image" src="http://www.cs.tufts.edu/comp/105/progLanguages.jpg" width=130 height=90><br>
+    <input name="software_engineering" type="image" src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/19/SDLC_-_Software_Development_Life_Cycle.jpg/596px-SDLC_-_Software_Development_Life_Cycle.jpg" width=100 height=100><br>
+    <input name="computer_networking" type="image" src="http://educationcareerarticles.com/wp-content/uploads/2014/01/Computer-Networking.jpg" width=110 height=100><br>
+    <input name="operating_systems" type="image" src="http://statfaking1.firstpost.in/wp-content/uploads/2014/02/operating-system-logos.jpg" width=100 height=100><br>
+    <input name="database_systems" type="image" src="http://innocentsystem.net/wp-content/uploads/2014/02/Business-Database.jpg" width=100 height=100><br>
+    <input name="computer_organization" type="image" src="http://courses.cs.vt.edu/~cs1104/VirtualMachines/OS.Layers.gif" width=120 height=120><br>
+    </form>
     </div> <!-- /container -->
   </body>
 </html>

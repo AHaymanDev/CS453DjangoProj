@@ -14,6 +14,8 @@ from django.template import RequestContext
 
 
 def book(request):
+    # select_category = kwargs
+    # TODO: do a select query
     table = BookTable(Book.objects.all())
     RequestConfig(request).configure(table)
     return render_to_response('bookrental/Books.html', {'table': table})
@@ -59,8 +61,17 @@ def cart(request):
 
 
 def category(request):
-    data={}
-    return render_to_response('bookrental/category.html', data, context_instance=RequestContext(request))
+    c = {}
+    c.update(csrf(request))
+    categories = {"software_development", "programming_languages", "software_engineering", "computer_networking", "operating_systems", "database_systems", "computer_organization"}
+    if request.method == 'POST':
+        select_books_from = None
+        for book_category in categories:
+            if request.POST.get(book_category) is not None:
+                select_books_from = book_category
+                break
+        return HttpResponseRedirect(reverse('book'), c, {'select_books': select_books_from})
+    return render_to_response('bookrental/category.html', c, context_instance=RequestContext(request))
 
 
 def login_failure(request):
