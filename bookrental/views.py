@@ -76,7 +76,7 @@ def login_failure(request):
 
 def logout_page(request):
     logout(request)
-    return render_to_response('bookrental/Login.html')
+    return render(request, 'bookrental/Login.html')
 
 
 # Register a new user with a custom form, log them in, and redirect to the Warning page.
