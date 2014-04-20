@@ -12,9 +12,9 @@ class UserCreateForm(UserCreationForm):
     last_name = forms.CharField()
     email = forms.EmailField()
 
-    class Meta:
-        model = User
-        fields = ('username', 'password', 'password2', 'email')
+    #class Meta:
+    #    model = User
+    #    fields = ('username', 'password', 'password2', 'email')
 
     def save(self, commit=True):
         user = super(UserCreateForm, self).save(commit=False)
