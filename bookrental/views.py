@@ -7,6 +7,7 @@ from bookrental.models import Book
 from bookrental.tables import BookTable
 from django_tables2 import RequestConfig
 from django.core.context_processors import csrf
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 
@@ -69,9 +70,7 @@ def login_failure(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('warning/')
-        else:
-            return HttpResponseRedirect('login_failure/')
+            return HttpResponseRedirect(reverse('warning/'))
     return render_to_response('bookrental/login_failure.html', c)
 
 
@@ -86,7 +85,7 @@ def new_user(request):
             user_form.save()
             user = authenticate(username=username, password=password)
             login(request, user)
-            return HttpResponseRedirect('warning/')
+            return HttpResponseRedirect(reverse('warning/'))
     user_form = UserCreateForm()
     return render(request, 'bookrental/new_user.html', {'user_form': user_form})
 
