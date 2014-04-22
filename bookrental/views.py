@@ -98,7 +98,7 @@ def returns(request):
         # pass these books to return confirmation page as table
         table = ReturnTable(returned_books)
         RequestConfig(request).configure(table)
-        return render(request, 'bookrental/ReturnConfirm.html', {'table': 'table'})
+        return render(request, 'bookrental/ReturnConfirm.html', {'table': table})
     return render(request, 'bookrental/Returns.html', {'table': table})
 
 
@@ -130,7 +130,7 @@ def cart(request):
         table = CartTable(removed_books)
         RequestConfig(request).configure(table)
         # display updated table on same page
-        return render(request, 'bookrental/YourCart.html', {'table': 'table'})
+        return render(request, 'bookrental/YourCart.html', {'table': table})
     return render(request, 'bookrental/YourCart.html', {'table': table})
 
 
