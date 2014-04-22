@@ -111,8 +111,8 @@ def new_user(request):
             login(request, user)
 
             # update login database
-            l = Login(username=username1, name=user_form.first_name + " " + user_form.last_name,
-                      email=user_form.email)
+            l = Login(username=username1, name=request.POST.get('first_name') + " " + request.POST.get('last_name'),
+                      email=request.POST.get('email'))
             l.save()
 
             return HttpResponseRedirect(reverse('warning'))
