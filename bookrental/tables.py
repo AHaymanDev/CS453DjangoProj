@@ -22,3 +22,4 @@ class PriceTable(tables.Table):
     class Meta:
         model = Prices
         attrs = {'width': '120%'}
+    removed = tables.CheckBoxColumn(accessor='pk')

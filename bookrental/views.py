@@ -33,7 +33,7 @@ def book(request):
         selected_books = Book.objects.filter(pk__in=pks)
 
         # put selected books in cart
-        # TODO: Doesn't work; not connecting to the cart table
+        # TODO: Doesn't work; not saving to the cart table!!!
         #for p in pks:
         kcart = Cart(isbn='978-123456', quantity=1, price=0)
             #for p in Prices.objects.all():
@@ -41,7 +41,7 @@ def book(request):
             #        kcart.price = p.price
             #        break
         kcart.save()
-        #table = CartTable(Cart.objects.all())))
+        #table = CartTable(Cart.objects.all())))))
         #RequestConfig(request).configure(table)
 
         # pass these books to cart page
@@ -89,29 +89,26 @@ def warning(request):
 def cart(request):
     c = {}
     c.update(csrf(request))
-    pks = request.GET.getlist("selection")
+    #pks = request.GET.getlist("selection")
 
-    # TODO: Get selected books, delete them, update page
     # get new books to add, join with price table
-    # TODO: works?
     new_cart = Cart.objects.all()
-    #for c in new_cart:
-    #    for p in pks:
-    #        # if a cart item is not selected, delete it
-    #        if c.isbn != p:
-    #            c.delete()
+    for c in new_cart:
+        for p in pks:
+            # if a cart item is not selected, delete it
+            if c.isbn != p:
+                c.delete()
 
-    # merge current_cart with new_carts
     table = CartTable(new_cart)
     RequestConfig(request).configure(table)
-    #if request.method == "POST":
-    #    pks = request.POST.getlist("removed")
-    #    # add all books NOT in removed
-    #    removed_books = Cart.objects.filter(~Q(pk__in=pks))
-    #    #pass these books to cart page as table
-    #    table = removed_books
-    #    RequestConfig(request).configure(table)
-    #    return render(request, 'bookrental/YourCart.html', {'table': 'table'})
+    if request.method == "POST":
+        pks = request.POST.getlist("removed")
+        # add all books NOT in removed
+        removed_books = Cart.objects.filter(~Q(pk__in=pks))
+        #pass these books to cart page as table
+        table = removed_books
+        RequestConfig(request).configure(table)
+        return render(request, 'bookrental/YourCart.html', {'table': 'table'})
     return render(request, 'bookrental/YourCart.html', {'table': table})
 
 
