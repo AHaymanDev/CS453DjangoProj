@@ -27,6 +27,7 @@ MANAGERS = ADMINS
 
 DATABASES = {'default': dj_database_url.config()}
 
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['book-rental.herokuapp.com']
