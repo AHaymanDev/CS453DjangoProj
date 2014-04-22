@@ -18,8 +18,7 @@ def book(request):
     # select all the books with the user's current category selected
     table = BookTable(Book.objects.filter(category=request.session.get('category')))
     RequestConfig(request).configure(table)
-    # TODO: return to just render
-    return render_to_response(request, 'bookrental/Books.html', {'table': table})
+    return render(request, 'bookrental/Books.html', {'table': table})
 
 
 def checkout(request):
@@ -76,7 +75,7 @@ def category(request):
                 # change a user's current category
                 request.session['category'] = select_books_from
                 break
-        return HttpResponseRedirect(reverse('book'), c, {'select_books': select_books_from})
+        return HttpResponseRedirect(reverse('book'), c, {'select_books_from': select_books_from})
     return render_to_response('bookrental/category.html', c, context_instance=RequestContext(request))
 
 
