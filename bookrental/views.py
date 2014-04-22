@@ -18,6 +18,7 @@ from django.template import RequestContext
 def book(request):
 
     # select all the books with the user's current category selected
+    print request.POST.get('username')
     l = Login.objects.get(username=request.POST.get('username'))
     table = BookTable(Book.objects.filter(category=l.category))
     RequestConfig(request).configure(table)
