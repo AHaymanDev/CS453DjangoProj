@@ -16,7 +16,7 @@ from django.template import RequestContext
 def book(request):
 
     # select all the books with the user's current category selected
-    table = BookTable(Book.objects.filter(category=request.session['category']))
+    table = BookTable(Book.objects.filter(category=request.session.get('category')))
     RequestConfig(request).configure(table)
     return render(request, 'bookrental/Books.html', {'table': table})
 
@@ -65,11 +65,12 @@ def cart(request):
 def category(request):
     c = {}
     c.update(csrf(request))
-    categories = {"software_development", "programming_languages", "software_engineering", "computer_networking", "operating_systems", "database_systems", "computer_organization"}
+    categories = {"programming_languages", "software_engineering", "computer_networking", "operating_systems", "database_systems", "computer_organization"}
     if request.method == 'POST':
         select_books_from = None
         for book_category in categories:
-            if request.POST.get(book_category) is not None:
+            # TODO: Because these categories are images, their names are appended with .x and .y
+            if request.POST.get(book_category + ".x") is not None:
                 select_books_from = book_category
                 # change a user's current category
                 request.session['category'] = select_books_from
@@ -108,11 +109,6 @@ def new_user(request):
             user_form.save()
             user = authenticate(username=username1, password=password)
             login(request, user)
-
-            # update login database
-            l = Login(username=username1, name=request.POST.get('first_name') + " " + request.POST.get('last_name'),
-                      email=request.POST.get('email'))
-            l.save()
 
             # update current session
             request.session['username'] = username1
