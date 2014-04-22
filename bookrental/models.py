@@ -7,7 +7,7 @@ from django.db import models
 class Login(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
     # password = models.CharField(max_length=15)
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=40)
     email = models.CharField(max_length=40)
     # phone = models.CharField(max_length=10)
     category = models.CharField(max_length=20)
@@ -24,9 +24,9 @@ class Login(models.Model):
           
 class Book(models.Model):
     isbn = models.CharField(max_length=17,primary_key=True)
-    title = models.CharField(max_length=20)
-    author = models.CharField(max_length=18)
-    category = models.CharField(max_length=15)
+    title = models.CharField(max_length=40)
+    author = models.CharField(max_length=40)
+    category = models.CharField(max_length=40)
 
     def __unicode__(self):
         return self.isbn, self.title, self.author, self.category

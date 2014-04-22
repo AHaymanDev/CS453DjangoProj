@@ -14,12 +14,10 @@ from django.template import RequestContext
 
 # Create your views here.
 
-
 def book(request):
 
     # select all the books with the user's current category selected
-    print request.POST.get('username')
-    l = Login.objects.get(username=request.POST.get('username'))
+    l = Login.objects.get(username=request.session['username'])
     table = BookTable(Book.objects.filter(category=l.category))
     RequestConfig(request).configure(table)
     return render(request, 'bookrental/Books.html', {'table': table})
@@ -42,6 +40,8 @@ def login_page(request):
         user = authenticate(username=username1, password=password1)
         if user is not None:
             login(request, user)
+            # update session
+            request.session['username'] = username1
             return HttpResponseRedirect('warning/')
         else:
             return HttpResponseRedirect('login_failure/')
@@ -91,6 +91,8 @@ def login_failure(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
+            # update session
+            request.session['username'] = username
             return HttpResponseRedirect(reverse('warning'))
     return render_to_response('bookrental/login_failure.html', c)
 
@@ -115,6 +117,9 @@ def new_user(request):
             l = Login(username=username1, name=request.POST.get('first_name') + " " + request.POST.get('last_name'),
                       email=request.POST.get('email'))
             l.save()
+
+            # update current session
+            request.session['username'] = username1
 
             return HttpResponseRedirect(reverse('warning'))
     user_form = UserCreateForm()
