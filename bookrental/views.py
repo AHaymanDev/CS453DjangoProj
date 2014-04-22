@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView
 from bookrental.forms import UserCreateForm
-from bookrental.models import Login
 from bookrental.models import Book
 from bookrental.tables import BookTable
 from django_tables2 import RequestConfig
