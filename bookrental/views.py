@@ -2,7 +2,9 @@ from django.shortcuts import render, render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.views.generic import ListView
 from bookrental.forms import UserCreateForm
+from bookrental.models import Login
 from bookrental.models import Book
 from bookrental.tables import BookTable
 from django_tables2 import RequestConfig
@@ -14,11 +16,12 @@ from django.template import RequestContext
 
 
 def book(request):
-    # select_category = kwargs
-    # TODO: do a select query
-    table = BookTable(Book.objects.all())
+
+    # select all the books with the user's current category selected
+    l = Login.objects.get(username=request.POST.get('username'))
+    table = BookTable(Book.objects.filter(category=l.category))
     RequestConfig(request).configure(table)
-    return render_to_response('bookrental/Books.html', {'table': table})
+    return render(request, 'bookrental/Books.html', {'table': table})
 
 
 def checkout(request):
@@ -33,9 +36,9 @@ def login_page(request):
     c = {}
     c.update(csrf(request))
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
+        username1 = request.POST.get('username')
+        password1 = request.POST.get('password')
+        user = authenticate(username=username1, password=password1)
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('warning/')
@@ -69,6 +72,10 @@ def category(request):
         for book_category in categories:
             if request.POST.get(book_category) is not None:
                 select_books_from = book_category
+                # change a user's current category
+                l = Login.objects.get(username=request.POST.get('username'))
+                l.category = select_books_from
+                l.save()
                 break
         return HttpResponseRedirect(reverse('book'), c, {'select_books': select_books_from})
     return render_to_response('bookrental/category.html', c, context_instance=RequestContext(request))
@@ -97,11 +104,17 @@ def new_user(request):
     if request.method == 'POST':
         user_form = UserCreateForm(request.POST)
         if user_form.is_valid():
-            username = user_form.clean_username()
+            username1 = user_form.clean_username()
             password = user_form.clean_password2()
             user_form.save()
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username1, password=password)
             login(request, user)
+
+            # update login database
+            l = Login(username=username1, name=user_form.first_name + " " + user_form.last_name,
+                      email=user_form.email)
+            l.save()
+
             return HttpResponseRedirect(reverse('warning'))
     user_form = UserCreateForm()
     return render(request, 'bookrental/new_user.html', {'user_form': user_form})
@@ -110,3 +123,13 @@ def new_user(request):
 def update_user(request):
     username = request.user.get_username()
     return render(request, 'bookrental/update_user.html', {'username': username})
+
+
+################################################
+
+class CategoryBooksList(ListView):
+    template_name = 'bookrental/Books.html'
+    context_object_name = 'category_books_list'
+
+    def get_queryset(self):
+        return Book.objects.filter()

@@ -6,11 +6,11 @@ from django.db import models
 
 class Login(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
-    password = models.CharField(max_length=15)
+    # password = models.CharField(max_length=15)
     name = models.CharField(max_length=15)
     email = models.CharField(max_length=40)
-    phone = models.CharField(max_length=10)
-    #book = models.ForeignKey(book)
+    # phone = models.CharField(max_length=10)
+    category = models.CharField(max_length=20)
 
     def __unicode__(self):
         return self.username, self.password
@@ -18,11 +18,7 @@ class Login(models.Model):
     def user_info(self):
         return self.name, self.email, self.phone
 
-
-class Categories(models.Model):
-    category = models.CharField(max_length=15, primary_key=True)
-
-    def __unicode__(self):
+    def user_category(self):
         return self.category
           
           
@@ -30,7 +26,7 @@ class Book(models.Model):
     isbn = models.CharField(max_length=17,primary_key=True)
     title = models.CharField(max_length=20)
     author = models.CharField(max_length=18)
-    category = models.ForeignKey(Categories)
+    category = models.CharField(max_length=15, primary_key=True)
 
     def __unicode__(self):
         return self.isbn, self.title, self.author
