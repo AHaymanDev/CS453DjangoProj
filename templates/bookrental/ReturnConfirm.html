@@ -1,15 +1,67 @@
-<!DOCTYPE html>
-<html>
-	<body>
-	<h1>SUCCESS!</h1>
-	<h3>Your rental was returned.</h3>
-	<form action=" ">
-		<input type="submit" value="Back to Return Page">
-	</form>
-	<form action=" ">
-		<input type="submit" value="Done">
-	</form>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Return Confirmation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A confirmation of the returned books">
+        <meta name="author" content="Jeremiah Griffin, Alisha Hayman, John Malott">
 
+        <!-- Le styles -->
+        <style>
+            body {
+                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
 
-	</body>
-</html>
+    </head>
+
+    <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Computer Science Book Rental</a>
+
+                <div class="nav-collapse collapse">
+                    <ul class="nav pull-right">
+                        <li class="active"><a href="{% url 'update_user' %}">Logged in as: {{ user.username|title }}</a>
+                        </li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <center><h1><strong> Return Confirmation </strong></h1>
+        <br><br>
+        <h3>You have successfully returned:</h3>
+        <br>
+            {% render_table table %}
+        <form action="{% url 'returns' %}" method="post">
+            <input type="button" value="Return More Books"/>
+        </form>
+        <form action="{% url 'category' %}" method="post">
+            <input type="button" value="Done"/>
+        </form>
+        </center>
+
+    </div>
+    <!-- /container -->
+    </body>
+    </html>
+{% endblock %}

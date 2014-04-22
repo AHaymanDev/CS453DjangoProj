@@ -2,6 +2,7 @@ import django_tables2 as tables
 from bookrental.models import Book
 from bookrental.models import Cart
 from bookrental.models import Prices
+from bookrental.models import Returns
 
 
 class BookTable(tables.Table):
@@ -23,3 +24,9 @@ class PriceTable(tables.Table):
         model = Prices
         attrs = {'width': '120%'}
     removed = tables.CheckBoxColumn(accessor='pk')
+
+class ReturnTable(tables.Table):
+    class Meta:
+        model = Returns
+        attrs = {'width': '120%'}
+    returned = tables.CheckBoxColumn(accessor='pk')

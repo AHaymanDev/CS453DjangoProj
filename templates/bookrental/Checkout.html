@@ -1,62 +1,64 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Checkout</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A checkout confirmation page">
+        <meta name="author" content="Jeremiah Griffin, Alisha Hayman, John Malott">
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+        <!-- Le styles -->
+        <style>
+            body {
+                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
 
-<head>
-<title>Checkout</title>
-<META http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style>
-	table, th, td
-	{
-		border-collapse:collapse;
-		border:1px solid black;
-	}
-</style>
-</head>
+    </head>
 
-<body>
-	<div>
-		<h1>Checkout</h1>
+    <body>
 
-		<h2>Please retrieve your books below</h2>
-		<h3>Return your books according to the due dates below:</h3>
-		<br>		
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Computer Science Book Rental</a>
 
-		<table>
-		<tr>
-			<th>Title</th>
-			<th>Author</th>
-			<th>ISBN</th>
-			<th>Quantity</th>
-			<th>Cost</th>
-			<th>Due By</th>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>
-				mm/dd/yyyy
-			</td>
-		</tr>
-		</table>
-		<br><br>
+                <div class="nav-collapse collapse">
+                    <ul class="nav pull-right">
+                        <li class="active"><a href="{% url 'update_user' %}">Logged in as: {{ user.username|title }}</a>
+                        </li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
 
-	
-		<hr>
-		<h3>Paid: $0.00</h3>
+    <div class="container">
 
+        <center><h1><strong> Checkout </strong></h1>
+        <br><br>
+        <h3>You have successfully purchased:</h3>
+        <br>
+            {% render_table table %}
+        <form action="{% url 'category' %}" method="post">
+            <input type="button" value="Done"/>
+        </form>
+        </center>
 
-<form action="">
-
-	<input type="button" value="Back to Main Menu">
-
-</form>
-		
-	</div>
-
-</body>
-
-</html>
+    </div>
+    <!-- /container -->
+    </body>
+    </html>
+{% endblock %}

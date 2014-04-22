@@ -16,6 +16,8 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.db.models import F
 from django.db.models import Q
+from bookrental.models import Returns
+from bookrental.tables import ReturnTable
 
 # Create your views here.
 
@@ -50,6 +52,7 @@ def book(request):
 
 
 def checkout(request):
+    # displays a successful checkout page
     return render_to_response('bookrental/Checkout.html')
 
 
@@ -61,6 +64,7 @@ def login_page(request):
     c = {}
     c.update(csrf(request))
     if request.method == 'POST':
+        # if the login button was clicked, authenticate the given user/pass combo
         username1 = request.POST.get('username')
         password1 = request.POST.get('password')
         user = authenticate(username=username1, password=password1)
@@ -68,28 +72,45 @@ def login_page(request):
             login(request, user)
             # update session
             request.session['username'] = username1
+            # good login, so go to warning page
             return HttpResponseRedirect('warning/')
         else:
+            # bad login, so go to failure
             return HttpResponseRedirect('login_failure/')
     return render_to_response('bookrental/Login.html', c)
 
 
 def return_confirm(request):
+    # display a return confirmation page
     return render_to_response('bookrental/ReturnConfirm.html')
 
 
 def returns(request):
-    return render_to_response('bookrental/Returns.html')
+    c = {}
+    c.update(csrf(request))
+    # Create a table of all returnable objects
+    table = ReturnTable(Returns.objects.all())
+    RequestConfig(request).configure(table)
+    if request.method == "POST":
+        # get list of returning books, delete from total returns
+        pks = request.POST.getlist("returning")
+        returned_books = Returns.objects.filter(~Q(pk__in=pks))
+        # pass these books to return confirmation page as table
+        table = ReturnTable(returned_books)
+        RequestConfig(request).configure(table)
+        return render(request, 'bookrental/ReturnConfirm.html', {'table': 'table'})
+    return render(request, 'bookrental/Returns.html', {'table': table})
 
 
 def warning(request):
+    # displays the disclaimer page
     return render_to_response('bookrental/Warning.html')
 
 
 def cart(request):
     c = {}
     c.update(csrf(request))
-    #pks = request.GET.getlist("selection")
+    pks = request.GET.getlist("selection")
 
     # get new books to add, join with price table
     new_cart = Cart.objects.all()
@@ -106,8 +127,9 @@ def cart(request):
         # add all books NOT in removed
         removed_books = Cart.objects.filter(~Q(pk__in=pks))
         #pass these books to cart page as table
-        table = removed_books
+        table = CartTable(removed_books)
         RequestConfig(request).configure(table)
+        # display updated table on same page
         return render(request, 'bookrental/YourCart.html', {'table': 'table'})
     return render(request, 'bookrental/YourCart.html', {'table': table})
 
@@ -115,18 +137,12 @@ def cart(request):
 def category(request):
     c = {}
     c.update(csrf(request))
+    # all available categories for books
     categories = {"programming_languages", "software_engineering", "computer_networking", "operating_systems", "database_systems", "computer_organization"}
     if request.method == 'POST':
+        # if the button was pressed, pass the selected category to the books page
         select_books_from = request.POST.get('books')
         request.session['category'] = select_books_from
-
-        #select_books_from = None
-        #for book_category in categories:
-        #    if request.POST.get(book_category + ".x") is not None:
-        #        select_books_from = book_category
-        #        # change a user's current category
-        #        request.session['category'] = select_books_from
-        #        break
         return HttpResponseRedirect(reverse('book'), c, {'select_books_from': select_books_from})
     return render_to_response('bookrental/category.html', c, context_instance=RequestContext(request))
 
@@ -135,10 +151,12 @@ def login_failure(request):
     c = {}
     c.update(csrf(request))
     if request.method == 'POST':
+        # if the button was clicked, authenticate user and pass in auth_user table
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is not None:
+            # if the user/pass pair is good, login and redirect to warning page
             login(request, user)
             # update session
             request.session['username'] = username
@@ -147,16 +165,19 @@ def login_failure(request):
 
 
 def logout_page(request):
-    logout(request)
-    # clear out cart
+    # clear out their cart
     for c in Cart.objects.all():
         c.delete()
+    # logout the user
+    logout(request)
+    # go back to the login page
     return render(request, 'bookrental/Login.html')
 
 
 # Register a new user with a custom form, log them in, and redirect to the Warning page.
 def new_user(request):
     if request.method == 'POST':
+        # when they hit submit, check if their form is correct
         user_form = UserCreateForm(request.POST)
         if user_form.is_valid():
             username1 = user_form.clean_username()
@@ -174,8 +195,17 @@ def new_user(request):
 
 
 def update_user(request):
-    username = request.user.get_username()
-    return render(request, 'bookrental/update_user.html', {'username': username})
+    if request.method == 'POST':
+        # if they hit submit, get their user and pass
+        username = request.user
+        password = request.POST.get('password')
+        # Current password is correct, so can set new password
+        if authenticate(username=username, passoword=password) is not None:
+            request.user.set_password(request.POST.get('new_password'))
+        request.user.email = request.POST.get('email')
+        # go to category page
+        return HttpResponseRedirect(reverse('category'))
+    return render_to_response('bookrental/update_user.html')
 
 
 ################################################
