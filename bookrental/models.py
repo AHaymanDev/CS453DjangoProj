@@ -29,7 +29,7 @@ class Book(models.Model):
     category = models.CharField(max_length=15, primary_key=True)
 
     def __unicode__(self):
-        return self.isbn, self.title, self.author
+        return self.isbn, self.title, self.author, self.category
 
 
 class Cart(models.Model):
