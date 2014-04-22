@@ -18,7 +18,8 @@ def book(request):
     # select all the books with the user's current category selected
     table = BookTable(Book.objects.filter(category=request.session.get('category')))
     RequestConfig(request).configure(table)
-    return render(request, 'bookrental/Books.html', {'table': table})
+    # TODO: return to just render
+    return render_to_response(request, 'bookrental/Books.html', {'table': table})
 
 
 def checkout(request):
