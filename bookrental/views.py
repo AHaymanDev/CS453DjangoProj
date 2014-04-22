@@ -41,7 +41,7 @@ def book(request):
             #        kcart.price = p.price
             #        break
         kcart.save()
-        #table = CartTable(Cart.objects.all())))))
+        #table = CartTable(Cart.objects.all())
         #RequestConfig(request).configure(table)
 
         # pass these books to cart page
