@@ -197,7 +197,7 @@ def new_user(request):
 def update_user(request):
     if request.method == 'POST':
         # if they hit submit, get their user and pass
-        username = request.user
+        username = request.session['username'] # request.user
         password = request.POST.get('password')
         # Current password is correct, so can set new password
         if authenticate(username=username, passoword=password) is not None:
