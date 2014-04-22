@@ -17,8 +17,7 @@ from django.template import RequestContext
 def book(request):
 
     # select all the books with the user's current category selected
-    l = Login.objects.get(username=request.session['username'])
-    table = BookTable(Book.objects.filter(category=l.category))
+    table = BookTable(Book.objects.filter(category=request.session['category']))
     RequestConfig(request).configure(table)
     return render(request, 'bookrental/Books.html', {'table': table})
 
@@ -74,9 +73,7 @@ def category(request):
             if request.POST.get(book_category) is not None:
                 select_books_from = book_category
                 # change a user's current category
-                l = Login.objects.get(username=request.POST.get('username'))
-                l.category = select_books_from
-                l.save()
+                request.session['category'] = select_books_from
                 break
         return HttpResponseRedirect(reverse('book'), c, {'select_books': select_books_from})
     return render_to_response('bookrental/category.html', c, context_instance=RequestContext(request))
