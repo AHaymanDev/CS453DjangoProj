@@ -11,6 +11,7 @@
 {% block content %}
 {% endblock %}
 {% block javascript %}
+<script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript" src="/static/js/bootstrap.js"></script>
 <script type="text/javascript" src="/static/js/transition.js"></script>
 <script type="text/javascript" src="/static/js/alert.js"></script>
@@ -23,6 +24,14 @@
 <script type="text/javascript" src="/static/js/button.js"></script>
 <script type="text/javascript" src="/static/js/collapse.js"></script>
 <script type="text/javascript" src="/static/js/carousel.js"></script>
+      <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
 {% endblock %}
 </body>
 </html>
