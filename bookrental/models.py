@@ -26,7 +26,7 @@ class Book(models.Model):
     isbn = models.CharField(max_length=17,primary_key=True)
     title = models.CharField(max_length=20)
     author = models.CharField(max_length=18)
-    category = models.CharField(max_length=15, primary_key=True)
+    category = models.CharField(max_length=15)
 
     def __unicode__(self):
         return self.isbn, self.title, self.author, self.category
