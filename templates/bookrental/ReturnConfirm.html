@@ -30,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="brand" href="#">Computer Science Book Rental</a>
+                <a class="brand" href="{% url 'category' %}">Computer Science Book Rental</a>
 
                 <div class="nav-collapse collapse">
                     <ul class="nav pull-right">
@@ -51,7 +51,7 @@
         <br><br>
         <h3>You have successfully returned:</h3>
         <br>
-            {% render_table table %}
+            <!-- TODO: { % render_table table %}
         <form action="{% url 'returns' %}" method="post">
             <input type="button" value="Return More Books"/>
         </form>
