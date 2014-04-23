@@ -47,12 +47,12 @@
 
     <div class="container">
 
-        <center><h1><strong> {{ select_books_from|title }} Books</strong></h1></center>
-
+        <center><h1><strong> {{ select_books_from|title }} Books</strong></h1>
+        <br><br>
         <form action="{% url 'cart' %}" method="post">
             {% render_table table %}
             <input type="submit" value="Add to Cart"/>
-        </form>
+        </form></center>
 
     </div>
     <!-- /container -->
