@@ -79,7 +79,7 @@ def cart(request):
 
     # get new books to add, join with price table
     # TODO: works?
-    new_cart = Book.objects.filter(prices__pk__in=pks)#, prices__pk__in=pks)  #book__isbn=F('prices__isbn'))
+    new_cart = Book.objects.filter(prices__pk__in=F('pks__in')#, prices__pk__in=pks)  #book__isbn=F('prices__isbn'))
 
     # merge current_cart with new_carts
     table = new_cart
