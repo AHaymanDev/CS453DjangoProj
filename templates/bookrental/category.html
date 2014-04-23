@@ -13,7 +13,7 @@
     <!-- Le styles -->
     <style>
       body {
-        padding-top: 10px; /* 10px to make the container go under the carousel */
+        padding-top: 40px; /* 40px to make the container go under the carousel */
       }
     /* CUSTOMIZE THE CAROUSEL
     -------------------------------------------------- */
@@ -127,7 +127,7 @@
 
     <div class="container">
 
-      <center><h1><strong>Select a Category</strong></h1></center>
+      <center><h1><strong>Select a Category</strong></h1>
 
       <form name="selectdropdown" method="post" action="{% url 'bookrental.views.book' %}">
          {% csrf_token %}
@@ -140,7 +140,7 @@
              <option value="computer_organization">Computer Organization</option>
         </select>
         <input type="submit" value="Search">
-        </form>
+        </form></center>
 
     </div> <!-- /container -->
   </body>
