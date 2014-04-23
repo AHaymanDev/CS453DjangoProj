@@ -27,7 +27,7 @@ def book(request):
     select_books_from = request.POST.get('books')
     table = BookTable(Book.objects.filter(category=request.POST.get('books'))) # request.session['category']))
     RequestConfig(request).configure(table)
-    if request.method == "POST":
+    if request.method == "GET":
         pks = request.POST.getlist("selection")
         selected_books = Book.objects.filter(pk__in=pks)
         # pass these books to cart page
