@@ -34,10 +34,11 @@ def book(request):
         kcart = None
         # put selected books in cart
         for b in selected_books:
-            kcart = Cart(isbn=b.isbn, quantity=1)
+            kcart = Cart(isbn=b.isbn, quantity=1, price=0)
             for p in Prices.objects.all():
                 if b.isbn == p.isbn:
                     kcart.price = p.price
+                    break
             kcart.save()
 
         # pass these books to cart page
