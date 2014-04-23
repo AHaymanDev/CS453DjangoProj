@@ -79,7 +79,7 @@ def cart(request):
 
     # get new books to add, join with price table
     # TODO: works?
-    new_cart = Book.objects.filter(prices__isbn=F('pks'))#(pk__in=pks).select_related()
+    new_cart = Book.objects.filter(pk=pks)#(pk__in=pks).select_related()
 
     # merge current_cart with new_carts
     table = new_cart
@@ -159,10 +159,3 @@ def update_user(request):
 
 
 ################################################
-
-class CategoryBooksList(ListView):
-    template_name = 'bookrental/Books.html'
-    context_object_name = 'category_books_list'
-
-    def get_queryset(self):
-        return Book.objects.filter()
