@@ -12,7 +12,7 @@ class Book(models.Model):
     #book_price = models.OneToOneField('Prices')
 
     def __unicode__(self):
-        return self.isbn#TODO:, self.title, self.author, self.category
+        return self.isbn, self.title, self.author, self.category
 
 
 class Prices(models.Model):
