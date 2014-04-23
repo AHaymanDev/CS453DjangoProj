@@ -13,11 +13,14 @@ from django.template import RequestContext
 
 # Create your views here.
 
+
 def book(request):
 
     # select all the books with the user's current category selected
-    table = BookTable(Book.objects.filter(category=request.session.get('category')))
+    table = BookTable(Book.objects.filter(category=request.session['category']))
     RequestConfig(request).configure(table)
+    # TODO: delete
+    return HttpResponse(request.session['category'])
     return render(request, 'bookrental/Books.html', {'table': table})
 
 
