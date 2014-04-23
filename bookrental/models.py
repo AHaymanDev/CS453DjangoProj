@@ -9,14 +9,14 @@ class Book(models.Model):
     title = models.CharField(max_length=40)
     author = models.CharField(max_length=40)
     category = models.CharField(max_length=40)
-    book_price = models.OneToOneField('Prices')
+    #book_price = models.OneToOneField('Prices')
 
     def __unicode__(self):
         return self.isbn, self.title, self.author, self.category
 
 
 class Prices(models.Model):
-    #isbn = models.ForeignKey(Book)
+    isbn = models.OneToOneField(Book) #models.ForeignKey(Book)
     price = models.IntegerField()
 
     def __unicode__(self):
