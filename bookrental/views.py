@@ -17,9 +17,10 @@ from django.template import RequestContext
 def book(request):
 
     # select all the books with the user's current category selected
+    select_books_from = request.POST.get('books')
     table = BookTable(Book.objects.filter(category=request.POST.get('books'))) # request.session['category']))
     RequestConfig(request).configure(table)
-    return render(request, 'bookrental/Books.html', {'table': table})
+    return render(request, 'bookrental/Books.html', {'table': table, 'select_books_from': select_books_from})
 
 
 def checkout(request):
