@@ -13,7 +13,7 @@
     <!-- Le styles -->
     <style>
       body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 10px; /* 10px to make the container go under the carousel */
       }
     /* CUSTOMIZE THE CAROUSEL
     -------------------------------------------------- */
@@ -125,24 +125,23 @@
     </div><!-- /.carousel -->
 
 
-
-
-
-
     <div class="container">
 
       <center><h1><strong>Select a Category</strong></h1></center>
 
-        <!--TODO: make this a carousel using bootstrap -->
-    <form name="categorybuttons" method="post" action="{% url 'bookrental.views.book' %}">
-    {% csrf_token %}
-    <input name="programming_languages" type="image" src="http://www.cs.tufts.edu/comp/105/progLanguages.jpg" width=130 height=90><br>
-    <input name="software_engineering" type="image" src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/19/SDLC_-_Software_Development_Life_Cycle.jpg/596px-SDLC_-_Software_Development_Life_Cycle.jpg" width=100 height=100><br>
-    <input name="computer_networking" type="image" src="http://educationcareerarticles.com/wp-content/uploads/2014/01/Computer-Networking.jpg" width=110 height=100><br>
-    <input name="operating_systems" type="image" src="http://statfaking1.firstpost.in/wp-content/uploads/2014/02/operating-system-logos.jpg" width=100 height=100><br>
-    <input name="database_systems" type="image" src="http://innocentsystem.net/wp-content/uploads/2014/02/Business-Database.jpg" width=100 height=100><br>
-    <input name="computer_organization" type="image" src="http://courses.cs.vt.edu/~cs1104/VirtualMachines/OS.Layers.gif" width=120 height=120><br>
-    </form>
+      <form name="selectdropdown" method="post" action="{% url 'bookrental.views.book' %}">
+         {% csrf_token %}
+        <select name="books">
+        <option value="programming_languages" selected >Programming Languages</option>
+        <option value="software_engineering">Software Engineering</option>
+        <option value="computer_networking">Computer Networking</option>
+        <option value="operating_systems">Operating Systems</option>
+             <option value="database_systems">Database Systems</option>
+             <option value="computer_organization">Computer Organization</option>
+        </select>
+        <input type="submit" value="Search">
+        </form>
+
     </div> <!-- /container -->
   </body>
 </html>
