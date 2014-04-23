@@ -30,6 +30,16 @@ def book(request):
     if request.method == "GET":
         pks = request.POST.getlist("selection")
         selected_books = Book.objects.filter(pk__in=pks)
+
+        kcart = None
+        # put selected books in cart
+        for b in selected_books:
+            kcart = Cart(isbn=b.isbn, quantity=1)
+            for p in Prices.objects.all():
+                if b.isbn == p.isbn:
+                    kcart.price = p.price
+        kcart.save()
+
         # pass these books to cart page
         return HttpResponseRedirect(reverse('cart'), c, {'selected_books': selected_books})
     return render(request, 'bookrental/Books.html', {'table': table, 'select_books_from': select_books_from})
@@ -79,7 +89,12 @@ def cart(request):
 
     # get new books to add, join with price table
     # TODO: works?
-    new_cart = Book.objects.get(pk__in=pks)#(pk__in=pks).select_related()
+    new_cart = Cart.objects.all()
+    for c in new_cart:
+        for p in pks:
+            # if a cart item is not selected, delete it
+            if c.isbn != p:
+                c.delete()
 
     # merge current_cart with new_carts
     table = new_cart
@@ -131,6 +146,9 @@ def login_failure(request):
 
 def logout_page(request):
     logout(request)
+    # clear out cart
+    for c in Cart.objects.all():
+        c.delete()
     return render(request, 'bookrental/Login.html')
 
 
