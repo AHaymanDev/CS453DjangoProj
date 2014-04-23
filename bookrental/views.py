@@ -90,11 +90,11 @@ def cart(request):
     # get new books to add, join with price table
     # TODO: works?
     new_cart = Cart.objects.all()
-    for c in new_cart:
-        for p in pks:
-            # if a cart item is not selected, delete it
-            if c.isbn != p:
-                c.delete()
+    #for c in new_cart:
+    #    for p in pks:
+    #        # if a cart item is not selected, delete it
+    #        if c.isbn != p:
+    #            c.delete()
 
     # merge current_cart with new_carts
     table = new_cart
