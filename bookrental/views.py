@@ -32,8 +32,8 @@ def book(request):
         selected_books = Book.objects.filter(pk__in=pks)
 
         # put selected books in cart
-        for b in selected_books:
-            kcart = Cart(isbn=b.isbn, quantity=1, price=0)
+        for p in pks:
+            kcart = Cart(isbn=p, quantity=1, price=0)
             #for p in Prices.objects.all():
             #    if b.isbn == p.isbn:
             #        kcart.price = p.price
