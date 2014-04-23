@@ -49,7 +49,8 @@
 
         <center><h1><strong> {{ select_books_from|title }} Books</strong></h1>
         <br><br>
-        <form action="{% url 'cart' %}" method="post">
+        <form action="{% url 'cart' %}" method="get">
+            {% csrf_token %}
             {% render_table table %}
             <input type="submit" value="Add to Cart"/>
         </form></center>

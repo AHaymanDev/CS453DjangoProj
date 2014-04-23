@@ -1,54 +1,62 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Your Cart</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="List of books currently in the cart">
+        <meta name="author" content="Jeremiah Griffin, Alisha Hayman, John Malott">
 
-<head>
-<title>Your Cart</title>
+        <!-- Le styles -->
+        <style>
+            body {
+                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
 
-</head>
+    </head>
 
-<body>
-<form name="input" action="" method="get">
-	<div>
-		<h1>Your Cart</h1>
-		
-		<table>
-		<tr>
-			<th>Title</th>
-			<th>Author</th>
-			<th>ISBN</th>
-			<th>Quantity</th>
-			<th>Cost</th>
-			<th>Select</th>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>
-				<input type="checkbox"/>
-			</td>
-		</tr>
-		</table>
-		<br><br>
+    <body>
 
-		<input type="submit" value="Remove Selected">
-		<br><br>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Computer Science Book Rental</a>
 
-</form>
+                <div class="nav-collapse collapse">
+                    <ul class="nav pull-right">
+                        <li class="active"><a href="{% url 'update_user' %}">Logged in as: {{ user.username|title }}</a>
+                        </li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
 
-		<hr>
-		<h3>Total: $0.00</h3>
+    <div class="container">
 
-<form action="">
+        <center><h1><strong> Your Cart </strong></h1>
+        <br><br>
+        <form action="{% url 'cart' %}" method="post">
+            {% csrf_token %}
+            {% render_table table %}
+            <input type="submit" value="Remove Selected"/>
+        </form></center>
 
-		<input type="button" value="Checkout">
-
-</form>
-		
-	</div>
-
-</body>
-
-</html>
+    </div>
+    <!-- /container -->
+    </body>
+    </html>
+{% endblock %}
