@@ -75,7 +75,7 @@ def warning(request):
 def cart(request):
     c = {}
     c.update(csrf(request))
-    pks = request.POST.getlist("selection")
+    pks = request.GET.getlist("selection")
 
     # get new books to add, join with price table
     # TODO: works?
@@ -84,14 +84,14 @@ def cart(request):
     # merge current_cart with new_carts
     table = new_cart
     RequestConfig(request).configure(table)
-    if request.method == "POST":
-        pks = request.POST.getlist("removed")
-        # add all books NOT in removed
-        removed_books = Cart.objects.filter(~Q(pk__in=pks))
-        #pass these books to cart page as table
-        table = removed_books
-        RequestConfig(request).configure(table)
-        return render(request, 'bookrental/YourCart.html', {'table': 'table'})
+    #if request.method == "POST":
+    #    pks = request.POST.getlist("removed")
+    #    # add all books NOT in removed
+    #    removed_books = Cart.objects.filter(~Q(pk__in=pks))
+    #    #pass these books to cart page as table
+    #    table = removed_books
+    #    RequestConfig(request).configure(table)
+    #    return render(request, 'bookrental/YourCart.html', {'table': 'table'})
     return render(request, 'bookrental/YourCart.html', {'table': table})
 
 
