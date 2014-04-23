@@ -33,7 +33,7 @@ def book(request):
         selected_books = Book.objects.filter(pk__in=pks)
 
         # put selected books in cart
-        # TODO:
+        # TODO: Doesn't work; not connecting to the cart table
         #for p in pks:
         kcart = Cart(isbn='978-123456', quantity=1, price=0)
             #for p in Prices.objects.all():
