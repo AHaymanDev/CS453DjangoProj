@@ -29,7 +29,7 @@ class Cart(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __unicode__(self):
-        return self.username, self.isbn, self.quantity, self.price
+        return self.isbn, self.quantity, self.price
 
 
 class Returns(models.Model):
