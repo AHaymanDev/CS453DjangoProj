@@ -40,9 +40,11 @@ def book(request):
                     kcart.price = p.price
                     break
             kcart.save()
+        table = CartTable(Cart.objects.all())
+        RequestConfig(request).configure(table)
 
         # pass these books to cart page
-        return HttpResponseRedirect(reverse('cart'), c, {'selected_books': selected_books})
+        return HttpResponseRedirect(reverse('cart'), c, {'table': table})
     return render(request, 'bookrental/Books.html', {'table': table, 'select_books_from': select_books_from})
 
 
@@ -88,9 +90,10 @@ def cart(request):
     c.update(csrf(request))
     pks = request.GET.getlist("selection")
 
+    # TODO: Get selected books, delete them, update page
     # get new books to add, join with price table
     # TODO: works?
-    new_cart = Cart.objects.all()
+    ##new_cart = Cart.objects.all()
     #for c in new_cart:
     #    for p in pks:
     #        # if a cart item is not selected, delete it
@@ -98,8 +101,8 @@ def cart(request):
     #            c.delete()
 
     # merge current_cart with new_carts
-    table = CartTable(new_cart)
-    RequestConfig(request).configure(table)
+    ##table = CartTable(new_cart)
+    ##RequestConfig(request).configure(table)
     #if request.method == "POST":
     #    pks = request.POST.getlist("removed")
     #    # add all books NOT in removed
@@ -108,7 +111,7 @@ def cart(request):
     #    table = removed_books
     #    RequestConfig(request).configure(table)
     #    return render(request, 'bookrental/YourCart.html', {'table': 'table'})
-    return render(request, 'bookrental/YourCart.html', {'table': table})
+    return render_to_response('bookrental/YourCart.html')#, {'table': table})
 
 
 def category(request):
