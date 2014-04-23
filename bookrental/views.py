@@ -6,20 +6,32 @@ from django.views.generic import ListView
 from bookrental.forms import UserCreateForm
 from bookrental.models import Book
 from bookrental.tables import BookTable
+from bookrental.models import Cart
+from bookrental.tables import CartTable
+from bookrental.models import Prices
+from bookrental.tables import PriceTable
 from django_tables2 import RequestConfig
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
+from django.db.models import F
+from django.db.models import Q
 
 # Create your views here.
 
 
 def book(request):
-
+    c = {}
+    c.update(csrf(request))
     # select all the books with the user's current category selected
     select_books_from = request.POST.get('books')
     table = BookTable(Book.objects.filter(category=request.POST.get('books'))) # request.session['category']))
     RequestConfig(request).configure(table)
+    if request.method == "POST":
+        pks = request.POST.getlist("selection")
+        selected_books = Book.objects.filter(pk__in=pks)
+        # pass these books to cart page
+        return HttpResponseRedirect(reverse('cart'), c, {'selected_books': selected_books})
     return render(request, 'bookrental/Books.html', {'table': table, 'select_books_from': select_books_from})
 
 
@@ -61,7 +73,26 @@ def warning(request):
 
 
 def cart(request):
-    return render_to_response('bookrental/YourCart.html')
+    c = {}
+    c.update(csrf(request))
+    pks = request.POST.getlist("selection")
+
+    # get new books to add, join with price table
+    # TODO: works?
+    new_cart = Book.objects.filter(pk__in=pks, isbn=F('prices__isbn'))
+
+    # merge current_cart with new_carts
+    table = new_cart
+    RequestConfig(request).configure(table)
+    if request.method == "POST":
+        pks = request.POST.getlist("removed")
+        # add all books NOT in removed
+        removed_books = Cart.objects.filter(~Q(pk__in=pks))
+        #pass these books to cart page as table
+        table = removed_books
+        RequestConfig(request).configure(table)
+        return render(request, 'bookrental/YourCart.html', {'table': 'table'})
+    return render(request, 'bookrental/YourCart.html', {'table': table})
 
 
 def category(request):

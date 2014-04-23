@@ -14,6 +14,14 @@ class Book(models.Model):
         return self.isbn, self.title, self.author, self.category
 
 
+class Prices(models.Model):
+    isbn = models.ForeignKey(Book)
+    price = models.IntegerField()
+
+    def __unicode__(self):
+        return self.isbn, self.price
+
+
 class Cart(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
     isbn = models.ForeignKey(Book) #models.CharField(max_length=17) # foreign key to book
