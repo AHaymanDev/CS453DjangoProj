@@ -35,7 +35,7 @@ def book(request):
         # put selected books in cart
         # TODO:
         #for p in pks:
-        kcart = Cart(isbn=pks[0], quantity=1, price=0)
+        kcart = Cart(isbn='978-123456', quantity=1, price=0)
             #for p in Prices.objects.all():
             #    if b.isbn == p.isbn:
             #        kcart.price = p.price
