@@ -24,8 +24,7 @@ class Prices(models.Model):
 
 
 class Cart(models.Model):
-    username = models.CharField(max_length=15, primary_key=True)
-    isbn = models.ForeignKey(Book) #models.CharField(max_length=17) # foreign key to book
+    isbn = models.CharField(max_length=17, primary_key=True)
     quantity = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
