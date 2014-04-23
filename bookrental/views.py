@@ -97,7 +97,7 @@ def cart(request):
     #            c.delete()
 
     # merge current_cart with new_carts
-    table = new_cart
+    table = CartTable(new_cart)
     RequestConfig(request).configure(table)
     #if request.method == "POST":
     #    pks = request.POST.getlist("removed")
