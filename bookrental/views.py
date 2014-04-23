@@ -110,7 +110,7 @@ def cart(request):
     #    table = removed_books
     #    RequestConfig(request).configure(table)
     #    return render(request, 'bookrental/YourCart.html', {'table': 'table'})
-    return render('bookrental/YourCart.html', {'table': table})
+    return render(request, 'bookrental/YourCart.html', {'table': table})
 
 
 def category(request):
