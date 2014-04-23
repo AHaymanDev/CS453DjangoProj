@@ -67,14 +67,16 @@ def category(request):
     c.update(csrf(request))
     categories = {"programming_languages", "software_engineering", "computer_networking", "operating_systems", "database_systems", "computer_organization"}
     if request.method == 'POST':
-        select_books_from = None
-        for book_category in categories:
-            # TODO: Because these categories are images, their names are appended with .x and .y
-            if request.POST.get(book_category + ".x") is not None:
-                select_books_from = book_category
-                # change a user's current category
-                request.session['category'] = select_books_from
-                break
+        select_books_from = request.POST.get('books')
+        request.session['category'] = select_books_from
+
+        #select_books_from = None
+        #for book_category in categories:
+        #    if request.POST.get(book_category + ".x") is not None:
+        #        select_books_from = book_category
+        #        # change a user's current category
+        #        request.session['category'] = select_books_from
+        #        break
         return HttpResponseRedirect(reverse('book'), c, {'select_books_from': select_books_from})
     return render_to_response('bookrental/category.html', c, context_instance=RequestContext(request))
 
