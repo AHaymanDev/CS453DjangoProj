@@ -38,7 +38,7 @@ def book(request):
             for p in Prices.objects.all():
                 if b.isbn == p.isbn:
                     kcart.price = p.price
-        kcart.save()
+            kcart.save()
 
         # pass these books to cart page
         return HttpResponseRedirect(reverse('cart'), c, {'selected_books': selected_books})
