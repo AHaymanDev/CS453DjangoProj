@@ -28,18 +28,19 @@ def book(request):
     table = BookTable(Book.objects.filter(category=request.POST.get('books'))) # request.session['category']))
     RequestConfig(request).configure(table)
     if request.method == "GET":
-        pks = request.POST.getlist("selection")
+        #pks = request.POST.getlist("selection")
+        pks = request.GET.getlist("selection")
         selected_books = Book.objects.filter(pk__in=pks)
 
         # put selected books in cart
         # TODO:
-        #for p in pks:
-        kcart = Cart(isbn=pks[0], quantity=1, price=0)
+        for p in pks:
+            kcart = Cart(isbn=p, quantity=1, price=0)
             #for p in Prices.objects.all():
             #    if b.isbn == p.isbn:
             #        kcart.price = p.price
             #        break
-        kcart.save()
+            kcart.save()
         #table = CartTable(Cart.objects.all())
         #RequestConfig(request).configure(table)
 
